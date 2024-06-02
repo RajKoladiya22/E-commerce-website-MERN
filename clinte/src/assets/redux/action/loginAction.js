@@ -23,11 +23,11 @@ export const LOGIN_USER = (data, navigate) => {
   return async (dispatch) => {
     try {
       const response = await axios.post("/api/v1/login", data);
-      localStorage.setItem('token', response.data.token); 
-      console.log(response);
+      
+    
 
       if (response.status === 201) {
-        toast("Login successful!");
+        localStorage.setItem('token',  JSON.stringify(response.data));
         navigate('/home');
       } else {
         toast("Login Failed");
