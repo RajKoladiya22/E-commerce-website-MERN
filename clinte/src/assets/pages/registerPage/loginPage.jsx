@@ -44,10 +44,10 @@ export const LoginPage = () => {
                         <div className="login-contain">
                             <div className="col-xxl-12 d-flex  align-items-center py-5">
                                 <div className="col-xxl-6 col-lg-6 d-flex justify-content-end d-xs-none d-sm-none d-md-none d-lg-flex">
-                                    <img src="./public/img/log-in.png" className="img-fluid" alt />
+                                    <img src="./public/img/log-in.png" className="img-fluid d-xs-none" alt />
                                 </div>
                                 <div className="col-xxl-6 col-xs-12 col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
-                                    <div className=" col-xxl-8 d-flex justify-content-end">
+                                    <div className=" col-xxl-8 w-md-80 d-flex justify-content-end">
                                         <div className="login-container d-flex ">
                                             <div className>
                                                 <h2>Welcome To Fastkart</h2>
