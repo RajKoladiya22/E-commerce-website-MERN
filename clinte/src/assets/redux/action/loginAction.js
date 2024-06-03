@@ -27,7 +27,7 @@ export const LOGIN_USER = (data, navigate) => {
     
 
       if (response.status === 201) {
-        localStorage.setItem('token',  JSON.stringify(response.data));
+        localStorage.setItem('token',  JSON.stringify(response.data.token));
         navigate('/home');
       } else {
         toast("Login Failed");

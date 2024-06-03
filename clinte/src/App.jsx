@@ -1,12 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
-import { Header } from './assets/components/header/header'
-import { Footer } from './assets/components/footer/footer'
-import { Pages } from './pages'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useState } from 'react'
-import { LoginRoutes } from './loginRoutes'
-
+import { Home } from './assets/pages/home/home'
 
 
 export const App = () => {
@@ -14,19 +10,9 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        {/* {
-        login === false?
-        <LoginRoutes/>
-         : */}
-        <div className="d-flex flex-column min-vh-100">
-          <Header />
-          <div className="flex-grow-1">
-            <Pages />
-          </div>
-          <Footer />
-        </div>
-
-        {/* } */}
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+        </Routes>
       </BrowserRouter>
     </>
   )
