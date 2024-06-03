@@ -61,7 +61,7 @@ export const Register = () => {
                                     <img src="./public/img/sign-up.png" className="img-fluid d-xs-none" alt='sign-up' />
                                 </div>
                                 <div className="col-xxl-6 col-xs-12 col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
-                                    <div className="col-xxl-8 w-md-80">
+                                    <div className="col-xxl-8 w-md-80 w-xs-100">
                                         <div className="login-container">
                                             <div>
                                                 <h2>Welcome To Fastkart</h2>

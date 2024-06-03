@@ -980,6 +980,9 @@
     }
 
     /* ------------------- */
+    .w-xs-100{
+        width: 100% !important;
+    }
     .d-xs-flex {
         display: flex;
     }
@@ -1212,5 +1215,8 @@
             }
         }
     }
-    
+    .login-page .login-container, .register-page .login-container {
+        
+        padding: 25px !important;
+    }
 }
