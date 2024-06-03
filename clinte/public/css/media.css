@@ -498,6 +498,9 @@
 @media(max-width:991px) {
 
     /* ------------------- */
+    .w-md-80{
+        width: 80% !important;
+    }
     .d-md-flex {
         display: flex;
     }

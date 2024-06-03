@@ -12,13 +12,30 @@ const verifyToken = (req, res, next) => {
     });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  // Check token format
+  if (!token.startsWith("Bearer ")) {
+    return res.status(400).send({
+      success: false,
+      message: "Invalid token format.",
+    });
+  }
+
+  // Extract token value
+  const tokenValue = token.split(" ")[1];
+
+  jwt.verify(tokenValue, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(500).send({
         success: false,
         message: "Failed to authenticate token.",
       });
     }
+
+    // Log decoded token payload for debugging
+    //console.log("Decoded token:", decoded);
+
+   
+
     req.userId = decoded.id;
     next();
   });

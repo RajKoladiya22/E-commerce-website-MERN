@@ -5,8 +5,9 @@ const { generateToken } = require("../utils/jwt");
 const Register = async (req, res) => {
   try {
     const { name, email, password, cpassword } = req.body;
-
-    // Create a new user
+    const user = await RegisterModel.findOne({email : email})
+    if(!user){
+      // Create a new user
     let hashedPassword = await bcrypt.hash(password, 10);
     let User = await RegisterModel.create({
       name,
@@ -20,6 +21,12 @@ const Register = async (req, res) => {
       message: "User successfully registered",
       data: User,
     });
+    }else{
+      return res.status(500).send({
+        success: false,
+        message: "Email Already Used",
+      });
+    }
   } catch (err) {
     console.error("Registration error:", err);
     return res.status(500).send({
@@ -38,7 +45,6 @@ const login = async (req, res) => {
       return res.status(400).send({
         success: false,
         message: "User not found",
-        data: user,
       });
     }
 

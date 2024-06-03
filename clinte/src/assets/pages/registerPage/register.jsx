@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { REGISTER_USER } from '../../redux/action/loginAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Register = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -23,7 +24,11 @@ export const Register = () => {
                 password
             };
 
-            dispatch(REGISTER_USER(data));
+            dispatch(REGISTER_USER(data, navigate));
+            setName('');
+            setEmail('');
+            setPassword('');
+            setCPassword('')
         }
 
         setCPassword("");
@@ -31,7 +36,7 @@ export const Register = () => {
 
     return (
         <>
-            <section className="login-head">
+            {/* <section className="login-head p-0">
                 <div className="container">
                     <div className="row">
                         <div className="col-xxl-12">
@@ -46,17 +51,17 @@ export const Register = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
             <section className="register-page">
                 <div className="container">
                     <div className="row">
                         <div className="login-contain">
-                            <div className="col-xxl-12 d-flex align-items-center py-5">
-                                <div className="col-xxl-6 col-lg-6 d-flex justify-content-end d-xs-none d-sm-none d-md-none d-lg-flex">
-                                    <img src="./public/img/sign-up.png" className="img-fluid" alt='sign-up' />
+                            <div className="col-xxl-12 col-xl-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center py-5 ">
+                                <div className="col-xxl-6 col-xl-6 col-lg-6 d-xs-none d-sm-none d-flex justify-content-end  d-sm-none d-md-none d-lg-flex">
+                                    <img src="./public/img/sign-up.png" className="img-fluid d-xs-none" alt='sign-up' />
                                 </div>
                                 <div className="col-xxl-6 col-xs-12 col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
-                                    <div className="col-xxl-8">
+                                    <div className="col-xxl-8 w-md-80">
                                         <div className="login-container">
                                             <div>
                                                 <h2>Welcome To Fastkart</h2>

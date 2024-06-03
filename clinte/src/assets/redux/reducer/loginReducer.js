@@ -1,20 +1,22 @@
 const initialState = {
     user: null,
     error: null,
+    token : localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null
   };
   
   export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
-      case "REGISTER_USER_SUCCESS":
+      case "LOGIN_USER":
         return {
           ...state,
-          user: action.payload,
+          token: action.payload,
         };
-      case "REGISTER_USER_FAILURE":
+      case "LOGOUT" :
         return {
           ...state,
-          error: action.payload,
-        };
+          token: null
+        }
+     
       default:
         return state;
     }

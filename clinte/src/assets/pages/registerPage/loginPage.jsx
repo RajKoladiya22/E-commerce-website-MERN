@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LOGIN_USER } from '../../redux/action/loginAction';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
     const navigate = useNavigate();
@@ -79,7 +80,7 @@ export const LoginPage = () => {
                                             </div>
                                             <h6 />
                                             <div className="sign-up text-center d-flex justify-content-center">
-                                                <p>Don't have an account?</p> <a href="/signup">Sign up</a>
+                                                <p>Don't have an account?</p> <Link to={'/register'}>Sign up</Link>
                                             </div>
                                         </div>
                                     </div>

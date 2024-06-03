@@ -20,11 +20,11 @@ export const Header = () => {
                             </div>
                             <div className="col-xxl-7 col-xl-9 d-xs-none d-sm-none d-xl-flex">
                                 <div className="top-bar-offer">
-                                    <div className="changebox text-center">
+                                    {/* <div className="changebox text-center">
                                         <span>"Something you love is now on sale <a href="#">Buy Now!</a>"</span><br />
                                         <span>"<span>Welcome to Fastkart!</span> Wrap new offers/gift every signle day on
                                             Weekends. <span>New Coupon Code: Fast024</span> "</span><br />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                             <div className="col-xxl-3 col-xs-12 col-xl-3 col-sm-12">
@@ -399,175 +399,168 @@ export const Header = () => {
                                         </button>
                                         <div className="categories-list">
                                             <ul>
-                                                &lt;% category.map(cat=&gt; {'{'} %&gt;
                                                 <li>
                                                     <a href="#" className="d-flex align-items-center justify-content-between">
                                                         <div className="d-flex align-items-center">
                                                             <img src="<%= cat.cat_icon %>" width={23} alt />
                                                             <h3>
-                                                                &lt;%= cat.cat_name %&gt;
+                                                                cat.cat_name
                                                             </h3>
                                                         </div>
                                                         <i className="ri-arrow-right-s-line" />
                                                     </a>
                                                     <div className="categories-list-2 d-flex" style={{ top: '0% !important' }}>
-                                                        {/* Filter subcategories based on the current category's ID */}
-                                                        &lt;% const filteredSubcategories=subcategories.filter(sub=&gt;
-                                                        sub.categoryId._id.toString() === cat._id.toString()); %&gt;
-                                                        &lt;% if (filteredSubcategories.length&gt; 0) {'{'} %&gt;
+
                                                         <div className="col-xxl-6">
                                                             <h3>Original</h3>
                                                             <ul>
-                                                                &lt;% filteredSubcategories.forEach(subcategory=&gt; {'{'}
-                                                                %&gt;
+
                                                                 <li><a href="#">
-                                                                    &lt;%= subcategory.subcat_name %&gt;
+                                                                    subcategory.subcat_name
                                                                 </a></li>
-                                                                &lt;% {'}'}); %&gt;
+
                                                             </ul>
                                                         </div>
-                                                        &lt;% {'}'} %&gt;
-                                                        {/* Add similar blocks for other subcategories */}
+
                                                     </div>
                                                 </li>
-                                                &lt;% {'}'}); %&gt;
-                                                {/*
-                                              <li>
-                                                  <a href="#" class="d-flex align-items-center justify-content-between">
-                                                      <div class="d-flex align-items-center"><img
-                                                          src="/public/assets/img/meat.png" width="23" alt="">
-                                                          <h3>Meats & Seafood</h3>
-                                                      </div><i class="ri-arrow-right-s-line"></i>
-                                                  </a>
-                                                  <div class="categories-list-3 d-flex">
-                                                      <div class="col-xxl-6">
-                                                          <h3>Origanal Vegetables</h3>
-                                                          <ul>
-                                                              <li><a href="#">Potato & Tomato</a></li>
-                                                              <li><a href="#">Cucumber & Capsicums</a></li>
-                                                              <li><a href="#">Leafy Vegetables</li>
-                                                              <li><a href="#">Root Vegetables</a></li>
-                                                              <li><a href="#">Beeans & Okra</a></li>
-                                                              <li><a href="#">Cabbage & Cauliflower</a></li>
-                                                              <li><a href="#">Gourd & Drumstick</a></li>
-                                                              <li><a href="#">Specialty</a></li>
-                                                          </ul>
-                                                      </div>
-                                                      <div class="col-xxl-6">
-                                                          <h3>Fresh Fruit</h3>
-                                                          <ul>
-                                                              <li><a href="#">Banana & Papaya</a></li>
-                                                              <li><a href="#">Kiwi, Citrus Fruit</a></li>
-                                                              <li><a href="#">Apples & Pomegranate</a></li>
-                                                              <li><a href="#">Seasonal Fruits</a></li>
-                                                              <li><a href="#">Mangoes</a></li>
-                                                              <li><a href="#">Fruit Baskets</a></li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li>
-                                                  <a href="#" class="d-flex align-items-center justify-content-between">
-                                                      <div class="d-flex align-items-center"><img
-                                                          src="/public/assets/img/croissant.png" width="23" alt="">
-                                                          <h3>Breakfast & Dairy</h3>
-                                                      </div><i class="ri-arrow-right-s-line"></i>
-                                                  </a>
-                                                  <div class="categories-list-4 d-flex">
-                                                      <div class="col-xxl-6">
-                                                          <h3>Origanal Vegetables</h3>
-                                                          <ul>
-                                                              <li><a href="#">Potato & Tomato</a></li>
-                                                              <li><a href="#">Cucumber & Capsicums</a></li>
-                                                              <li><a href="#">Leafy Vegetables</li>
-                                                              <li><a href="#">Root Vegetables</a></li>
-                                                              <li><a href="#">Beeans & Okra</a></li>
-                                                              <li><a href="#">Cabbage & Cauliflower</a></li>
-                                                              <li><a href="#">Gourd & Drumstick</a></li>
-                                                              <li><a href="#">Specialty</a></li>
-                                                          </ul>
-                                                      </div>
-                                                      <div class="col-xxl-6">
-                                                          <h3>Fresh Fruit</h3>
-                                                          <ul>
-                                                              <li><a href="#">Banana & Papaya</a></li>
-                                                              <li><a href="#">Kiwi, Citrus Fruit</a></li>
-                                                              <li><a href="#">Apples & Pomegranate</a></li>
-                                                              <li><a href="#">Seasonal Fruits</a></li>
-                                                              <li><a href="#">Mangoes</a></li>
-                                                              <li><a href="#">Fruit Baskets</a></li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li>
-                                                  <a href="#" class="d-flex align-items-center justify-content-between">
-                                                      <div class="d-flex align-items-center"><img
-                                                          src="/public/assets/img/cookies.png" width="23" alt="">
-                                                          <h3>Biscuis & Snacks</h3>
-                                                      </div><i class="ri-arrow-right-s-line"></i>
-                                                  </a>
-                                                  <div class="categories-list-5 d-flex">
-                                                      <div class="col-xxl-6">
-                                                          <h3>Origanal Vegetables</h3>
-                                                          <ul>
-                                                              <li><a href="#">Potato & Tomato</a></li>
-                                                              <li><a href="#">Cucumber & Capsicums</a></li>
-                                                              <li><a href="#">Leafy Vegetables</li>
-                                                              <li><a href="#">Root Vegetables</a></li>
-                                                              <li><a href="#">Beeans & Okra</a></li>
-                                                              <li><a href="#">Cabbage & Cauliflower</a></li>
-                                                              <li><a href="#">Gourd & Drumstick</a></li>
-                                                              <li><a href="#">Specialty</a></li>
-                                                          </ul>
-                                                      </div>
-                                                      <div class="col-xxl-6">
-                                                          <h3>Fresh Fruit</h3>
-                                                          <ul>
-                                                              <li><a href="#">Banana & Papaya</a></li>
-                                                              <li><a href="#">Kiwi, Citrus Fruit</a></li>
-                                                              <li><a href="#">Apples & Pomegranate</a></li>
-                                                              <li><a href="#">Seasonal Fruits</a></li>
-                                                              <li><a href="#">Mangoes</a></li>
-                                                              <li><a href="#">Fruit Baskets</a></li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </li>
-                                              <li>
-                                                  <a href="#" class="d-flex align-items-center justify-content-between">
-                                                      <div class="d-flex align-items-center"><img
-                                                          src="/public/assets/img/grocery.svg" width="23" alt="">
-                                                          <h3>Grocery & Steples</h3>
-                                                      </div><i class="ri-arrow-right-s-line"></i>
-                                                  </a>
-                                                  <div class="categories-list-6 d-flex">
-                                                      <div class="col-xxl-6">
-                                                          <h3>Origanal Vegetables</h3>
-                                                          <ul>
-                                                              <li><a href="#">Potato & Tomato</a></li>
-                                                              <li><a href="#">Cucumber & Capsicums</a></li>
-                                                              <li><a href="#">Leafy Vegetables</li>
-                                                              <li><a href="#">Root Vegetables</a></li>
-                                                              <li><a href="#">Beeans & Okra</a></li>
-                                                              <li><a href="#">Cabbage & Cauliflower</a></li>
-                                                              <li><a href="#">Gourd & Drumstick</a></li>
-                                                              <li><a href="#">Specialty</a></li>
-                                                          </ul>
-                                                      </div>
-                                                      <div class="col-xxl-6">
-                                                          <h3>Fresh Fruit</h3>
-                                                          <ul>
-                                                              <li><a href="#">Banana & Papaya</a></li>
-                                                              <li><a href="#">Kiwi, Citrus Fruit</a></li>
-                                                              <li><a href="#">Apples & Pomegranate</a></li>
-                                                              <li><a href="#">Seasonal Fruits</a></li>
-                                                              <li><a href="#">Mangoes</a></li>
-                                                              <li><a href="#">Fruit Baskets</a></li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </li> */}
+
+
+
+                                                <li>
+                                                    <a href="#" className="d-flex align-items-center justify-content-between">
+                                                        <div className="d-flex align-items-center"><img src="./public/img/meat.png" width={23} alt />
+                                                            <h3>Meats &amp; Seafood</h3>
+                                                        </div><i className="ri-arrow-right-s-line" />
+                                                    </a>
+                                                    <div className="categories-list-3 d-flex">
+                                                        <div className="col-xxl-6">
+                                                            <h3>Origanal Vegetables</h3>
+                                                            <ul>
+                                                                <li><a href="#">Potato &amp; Tomato</a></li>
+                                                                <li><a href="#">Cucumber &amp; Capsicums</a></li>
+                                                                <li><a href="#">Leafy Vegetables</a></li>
+                                                                <li><a href="#">Root Vegetables</a></li>
+                                                                <li><a href="#">Beeans &amp; Okra</a></li>
+                                                                <li><a href="#">Cabbage &amp; Cauliflower</a></li>
+                                                                <li><a href="#">Gourd &amp; Drumstick</a></li>
+                                                                <li><a href="#">Specialty</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-xxl-6">
+                                                            <h3>Fresh Fruit</h3>
+                                                            <ul>
+                                                                <li><a href="#">Banana &amp; Papaya</a></li>
+                                                                <li><a href="#">Kiwi, Citrus Fruit</a></li>
+                                                                <li><a href="#">Apples &amp; Pomegranate</a></li>
+                                                                <li><a href="#">Seasonal Fruits</a></li>
+                                                                <li><a href="#">Mangoes</a></li>
+                                                                <li><a href="#">Fruit Baskets</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="d-flex align-items-center justify-content-between">
+                                                        <div className="d-flex align-items-center"><img src="./public/img/croissant.png" width={23} alt />
+                                                            <h3>Breakfast &amp; Dairy</h3>
+                                                        </div><i className="ri-arrow-right-s-line" />
+                                                    </a>
+                                                    <div className="categories-list-4 d-flex">
+                                                        <div className="col-xxl-6">
+                                                            <h3>Origanal Vegetables</h3>
+                                                            <ul>
+                                                                <li><a href="#">Potato &amp; Tomato</a></li>
+                                                                <li><a href="#">Cucumber &amp; Capsicums</a></li>
+                                                                <li><a href="#">Leafy Vegetables</a></li><a href="#">
+                                                                </a><li><a href="#" /><a href="#">Root Vegetables</a></li>
+                                                                <li><a href="#">Beeans &amp; Okra</a></li>
+                                                                <li><a href="#">Cabbage &amp; Cauliflower</a></li>
+                                                                <li><a href="#">Gourd &amp; Drumstick</a></li>
+                                                                <li><a href="#">Specialty</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-xxl-6">
+                                                            <h3>Fresh Fruit</h3>
+                                                            <ul>
+                                                                <li><a href="#">Banana &amp; Papaya</a></li>
+                                                                <li><a href="#">Kiwi, Citrus Fruit</a></li>
+                                                                <li><a href="#">Apples &amp; Pomegranate</a></li>
+                                                                <li><a href="#">Seasonal Fruits</a></li>
+                                                                <li><a href="#">Mangoes</a></li>
+                                                                <li><a href="#">Fruit Baskets</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="d-flex align-items-center justify-content-between">
+                                                        <div className="d-flex align-items-center"><img src="./public/img/cookies.png" width={23} alt />
+                                                            <h3>Biscuis &amp; Snacks</h3>
+                                                        </div><i className="ri-arrow-right-s-line" />
+                                                    </a>
+                                                    <div className="categories-list-5 d-flex">
+                                                        <div className="col-xxl-6">
+                                                            <h3>Origanal Vegetables</h3>
+                                                            <ul>
+                                                                <li><a href="#">Potato &amp; Tomato</a></li>
+                                                                <li><a href="#">Cucumber &amp; Capsicums</a></li>
+                                                                <li><a href="#">Leafy Vegetables</a></li><a href="#">
+                                                                </a><li><a href="#" /><a href="#">Root Vegetables</a></li>
+                                                                <li><a href="#">Beeans &amp; Okra</a></li>
+                                                                <li><a href="#">Cabbage &amp; Cauliflower</a></li>
+                                                                <li><a href="#">Gourd &amp; Drumstick</a></li>
+                                                                <li><a href="#">Specialty</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-xxl-6">
+                                                            <h3>Fresh Fruit</h3>
+                                                            <ul>
+                                                                <li><a href="#">Banana &amp; Papaya</a></li>
+                                                                <li><a href="#">Kiwi, Citrus Fruit</a></li>
+                                                                <li><a href="#">Apples &amp; Pomegranate</a></li>
+                                                                <li><a href="#">Seasonal Fruits</a></li>
+                                                                <li><a href="#">Mangoes</a></li>
+                                                                <li><a href="#">Fruit Baskets</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="d-flex align-items-center justify-content-between">
+                                                        <div className="d-flex align-items-center"><img src="./public/img/grocery.svg" width={23} alt />
+                                                            <h3>Grocery &amp; Steples</h3>
+                                                        </div><i className="ri-arrow-right-s-line" />
+                                                    </a>
+                                                    <div className="categories-list-6 d-flex">
+                                                        <div className="col-xxl-6">
+                                                            <h3>Origanal Vegetables</h3>
+                                                            <ul>
+                                                                <li><a href="#">Potato &amp; Tomato</a></li>
+                                                                <li><a href="#">Cucumber &amp; Capsicums</a></li>
+                                                                <li><a href="#">Leafy Vegetables</a></li><a href="#">
+                                                                </a><li><a href="#" /><a href="#">Root Vegetables</a></li>
+                                                                <li><a href="#">Beeans &amp; Okra</a></li>
+                                                                <li><a href="#">Cabbage &amp; Cauliflower</a></li>
+                                                                <li><a href="#">Gourd &amp; Drumstick</a></li>
+                                                                <li><a href="#">Specialty</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-xxl-6">
+                                                            <h3>Fresh Fruit</h3>
+                                                            <ul>
+                                                                <li><a href="#">Banana &amp; Papaya</a></li>
+                                                                <li><a href="#">Kiwi, Citrus Fruit</a></li>
+                                                                <li><a href="#">Apples &amp; Pomegranate</a></li>
+                                                                <li><a href="#">Seasonal Fruits</a></li>
+                                                                <li><a href="#">Mangoes</a></li>
+                                                                <li><a href="#">Fruit Baskets</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+
                                             </ul>
                                         </div>
                                     </div>
@@ -702,7 +695,7 @@ export const Header = () => {
                                                             <a href="#">
                                                             </a><div className="deal-box-1 d-flex align-items-center"><a href="#">
                                                                 <div className="product-img">
-                                                                    <img src="/public/assets/img/coffe.png" width={80} alt />
+                                                                    <img src="./public/img/coffe.png" width={80} alt />
                                                                 </div>
                                                             </a><div className="product-detail"><a href="#">
                                                             </a><div className="product-name"><a href="#">
