@@ -334,7 +334,7 @@ export const Header = () => {
             </section>
             {/* ===header-end=== */}
             {/* ===nevigetion-start=== */}
-            <section className="d-xs-none d-sm-none d-xl-flex">
+            <section className="nav-bg d-xs-none d-sm-none d-xl-flex">
                 <div className="container">
                     <div className="row">
                         <div className="col-xxl-12 col-xl-12  ">

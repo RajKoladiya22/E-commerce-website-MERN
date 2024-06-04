@@ -77,7 +77,7 @@ a {
 
 header {
   padding: 20px 0;
-  background-color: rgba(139, 107, 4, 0.213);
+  background-color: rgba(35, 154, 146, 0.1882352941);
 }
 header .top-header .header-logo img {
   width: calc(120px + 42 * (100vw - 320px) / 1600);
@@ -508,25 +508,27 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   /* Additional styling for the sticky header */
 }
 
-.nevigetion {
-  padding-bottom: 15px;
-  background-color: transparent !important;
+.nav-bg {
+  background-color: rgba(35, 154, 146, 0.1882352941);
 }
-.nevigetion .categories {
+.nav-bg .nevigetion {
+  padding-bottom: 15px;
+}
+.nav-bg .nevigetion .categories {
   position: relative;
 }
-.nevigetion .categories button {
+.nav-bg .nevigetion .categories button {
   background-color: #095850;
   border: 0;
   border-radius: 5px;
   padding: 13px 35px;
 }
-.nevigetion .categories button a {
+.nav-bg .nevigetion .categories button a {
   color: #ffffff;
   font-size: 19px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list {
+.nav-bg .nevigetion .categories .categories-list {
   position: absolute;
   width: 300px;
   box-shadow: 0px 0px 9px -7px #222222;
@@ -537,29 +539,29 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   margin-top: 10px;
   transition: all 0.5s;
 }
-.nevigetion .categories .categories-list > ul {
+.nav-bg .nevigetion .categories .categories-list > ul {
   margin: 0;
   padding: 20px 25px;
   flex-wrap: wrap;
   gap: 25px;
   display: flex;
 }
-.nevigetion .categories .categories-list > ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li {
   position: relative;
   justify-content: space-between;
   width: 100%;
 }
-.nevigetion .categories .categories-list > ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li a {
   position: relative;
 }
-.nevigetion .categories .categories-list > ul li a h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li a h3 {
   font-size: 17px;
   padding: 5px 0;
   color: #222222;
   padding-left: 5px;
   margin: 0;
 }
-.nevigetion .categories .categories-list > ul li a h3::after {
+.nav-bg .nevigetion .categories .categories-list > ul li a h3::after {
   position: absolute;
   content: "";
   top: 100%;
@@ -571,10 +573,10 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transform-origin: right;
   transition: all 0.9s;
 }
-.nevigetion .categories .categories-list > ul li a i {
+.nav-bg .nevigetion .categories .categories-list > ul li a i {
   color: #222222;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-1 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-1 {
   position: absolute;
   width: 520px;
   left: 112%;
@@ -588,22 +590,22 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   top: -70%;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-1 h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-1 h3 {
   font-size: 18px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-1 ul {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-1 ul {
   list-style: inside;
   padding: 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-1 ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-1 ul li {
   padding: 4px 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-1 ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-1 ul li a {
   color: #4a5568;
   font-size: 14px;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-2 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-2 {
   position: absolute;
   width: 520px;
   left: 112%;
@@ -617,22 +619,22 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   top: 0%;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-2 h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-2 h3 {
   font-size: 18px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-2 ul {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-2 ul {
   list-style: inside;
   padding: 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-2 ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-2 ul li {
   padding: 4px 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-2 ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-2 ul li a {
   color: #4a5568;
   font-size: 14px;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-3 {
   position: absolute;
   width: 520px;
   left: 112%;
@@ -646,22 +648,22 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   top: -440%;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-3 h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-3 h3 {
   font-size: 18px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-3 ul {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-3 ul {
   list-style: inside;
   padding: 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-3 ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-3 ul li {
   padding: 4px 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-3 ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-3 ul li a {
   color: #4a5568;
   font-size: 14px;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-4 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-4 {
   position: absolute;
   width: 520px;
   left: 112%;
@@ -675,22 +677,22 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   top: -620%;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-4 h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-4 h3 {
   font-size: 18px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-4 ul {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-4 ul {
   list-style: inside;
   padding: 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-4 ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-4 ul li {
   padding: 4px 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-4 ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-4 ul li a {
   color: #4a5568;
   font-size: 14px;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-5 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-5 {
   position: absolute;
   width: 520px;
   left: 112%;
@@ -704,22 +706,22 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   top: -800%;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-5 h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-5 h3 {
   font-size: 18px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-5 ul {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-5 ul {
   list-style: inside;
   padding: 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-5 ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-5 ul li {
   padding: 4px 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-5 ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-5 ul li a {
   color: #4a5568;
   font-size: 14px;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-6 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-6 {
   position: absolute;
   width: 520px;
   left: 112%;
@@ -733,68 +735,68 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   top: 0%;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-6 h3 {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-6 h3 {
   font-size: 18px;
   font-weight: 600;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-6 ul {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-6 ul {
   list-style: inside;
   padding: 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-6 ul li {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-6 ul li {
   padding: 4px 0;
 }
-.nevigetion .categories .categories-list > ul li .categories-list-6 ul li a {
+.nav-bg .nevigetion .categories .categories-list > ul li .categories-list-6 ul li a {
   color: #4a5568;
   font-size: 14px;
 }
-.nevigetion .categories .categories-list > ul li:hover .categories-list-1,
-.nevigetion .categories .categories-list > ul li:hover .categories-list-2,
-.nevigetion .categories .categories-list > ul li:hover .categories-list-3,
-.nevigetion .categories .categories-list > ul li:hover .categories-list-4,
-.nevigetion .categories .categories-list > ul li:hover .categories-list-5,
-.nevigetion .categories .categories-list > ul li:hover .categories-list-6 {
+.nav-bg .nevigetion .categories .categories-list > ul li:hover .categories-list-1,
+.nav-bg .nevigetion .categories .categories-list > ul li:hover .categories-list-2,
+.nav-bg .nevigetion .categories .categories-list > ul li:hover .categories-list-3,
+.nav-bg .nevigetion .categories .categories-list > ul li:hover .categories-list-4,
+.nav-bg .nevigetion .categories .categories-list > ul li:hover .categories-list-5,
+.nav-bg .nevigetion .categories .categories-list > ul li:hover .categories-list-6 {
   opacity: 1;
   visibility: visible;
   margin-left: 0;
 }
-.nevigetion .categories .categories-list > ul li:hover h3::after {
+.nav-bg .nevigetion .categories .categories-list > ul li:hover h3::after {
   width: 50%;
   transform-origin: left;
 }
-.nevigetion .categories:hover .categories-list {
+.nav-bg .nevigetion .categories:hover .categories-list {
   opacity: 1;
   visibility: visible;
   margin-top: 0;
 }
-.nevigetion nav ul {
+.nav-bg .nevigetion nav ul {
   padding: 0;
   margin: 0;
 }
-.nevigetion nav ul li {
+.nav-bg .nevigetion nav ul li {
   position: relative;
 }
-.nevigetion nav ul li a {
+.nav-bg .nevigetion nav ul li a {
   transition: all 0.5s;
 }
-.nevigetion nav ul li a h3 {
+.nav-bg .nevigetion nav ul li a h3 {
   font-size: 16px;
   color: #222222;
   margin: 0;
   transition: all 0.5s;
   font-weight: 600;
 }
-.nevigetion nav ul li a i {
+.nav-bg .nevigetion nav ul li a i {
   color: #222222;
 }
-.nevigetion nav ul li a:hover {
+.nav-bg .nevigetion nav ul li a:hover {
   color: #095850;
 }
-.nevigetion nav ul li a:hover h3,
-.nevigetion nav ul li a:hover i {
+.nav-bg .nevigetion nav ul li a:hover h3,
+.nav-bg .nevigetion nav ul li a:hover i {
   color: #095850;
 }
-.nevigetion nav ul li .page-drop {
+.nav-bg .nevigetion nav ul li .page-drop {
   position: absolute;
   width: 200px;
   padding: 20px;
@@ -807,16 +809,16 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transition: all 0.5s;
   z-index: 999999999999;
 }
-.nevigetion nav ul li .page-drop ul {
+.nav-bg .nevigetion nav ul li .page-drop ul {
   padding: 0;
 }
-.nevigetion nav ul li .page-drop ul li a {
+.nav-bg .nevigetion nav ul li .page-drop ul li a {
   font-size: 14px;
   color: #222222;
   line-height: 30px;
   position: relative;
 }
-.nevigetion nav ul li .page-drop ul li a::after {
+.nav-bg .nevigetion nav ul li .page-drop ul li a::after {
   position: absolute;
   content: "";
   top: 100%;
@@ -828,11 +830,11 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transform-origin: right;
   transition: all 0.9s;
 }
-.nevigetion nav ul li .page-drop ul li:hover a::after {
+.nav-bg .nevigetion nav ul li .page-drop ul li:hover a::after {
   width: 60%;
   transform-origin: left;
 }
-.nevigetion nav ul li .mega-menu {
+.nav-bg .nevigetion nav ul li .mega-menu {
   position: absolute;
   right: -500%;
   width: 1000px;
@@ -850,16 +852,16 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   margin-top: -10px;
   z-index: 999999999999;
 }
-.nevigetion nav ul li .mega-menu ul {
+.nav-bg .nevigetion nav ul li .mega-menu ul {
   padding: 0;
 }
-.nevigetion nav ul li .mega-menu ul li a {
+.nav-bg .nevigetion nav ul li .mega-menu ul li a {
   font-size: 14px;
   color: #222222;
   line-height: 30px;
   position: relative;
 }
-.nevigetion nav ul li .mega-menu ul li a::after {
+.nav-bg .nevigetion nav ul li .mega-menu ul li a::after {
   position: absolute;
   content: "";
   top: 100%;
@@ -871,17 +873,17 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   transform-origin: right;
   transition: all 0.9s;
 }
-.nevigetion nav ul li .mega-menu ul li:hover a::after {
+.nav-bg .nevigetion nav ul li .mega-menu ul li:hover a::after {
   width: 60%;
   transform-origin: left;
 }
-.nevigetion nav ul li:hover .page-drop,
-.nevigetion nav ul li:hover .mega-menu {
+.nav-bg .nevigetion nav ul li:hover .page-drop,
+.nav-bg .nevigetion nav ul li:hover .mega-menu {
   opacity: 1;
   visibility: visible;
   margin-top: 0px;
 }
-.nevigetion nav ul li .label {
+.nav-bg .nevigetion nav ul li .label {
   position: absolute;
   top: -70%;
   left: 15%;
@@ -891,21 +893,21 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   color: #ffffff;
   border-radius: 5px 0 5px 0;
 }
-.nevigetion .deal .modal-head {
+.nav-bg .nevigetion .deal .modal-head {
   position: relative;
   padding: 25px 20px 15px 20px;
 }
-.nevigetion .deal .modal-head h2 {
+.nav-bg .nevigetion .deal .modal-head h2 {
   font-size: 20px;
   font-weight: 600;
 }
-.nevigetion .deal .modal-head h3 {
+.nav-bg .nevigetion .deal .modal-head h3 {
   font-size: 14px;
   font-weight: 400;
   color: #4a5568;
   margin: 0;
 }
-.nevigetion .deal .modal-head button {
+.nav-bg .nevigetion .deal .modal-head button {
   position: absolute;
   top: -15px;
   right: -15px;
@@ -913,7 +915,7 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   background-color: #072920;
   opacity: 1 !important;
 }
-.nevigetion .deal a h3 {
+.nav-bg .nevigetion .deal a h3 {
   background-color: #e6f5f3;
   color: #095850;
   font-size: 18px;
@@ -922,146 +924,179 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
   border-radius: 5px;
   margin: 0;
 }
-.nevigetion .deal .deal-list {
+.nav-bg .nevigetion .deal .deal-list {
   height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.nevigetion .deal .deal-list::-webkit-scrollbar {
+.nav-bg .nevigetion .deal .deal-list::-webkit-scrollbar {
   width: 4px;
   /* Width of the scroll bar */
 }
-.nevigetion .deal .deal-list::-webkit-scrollbar-track {
+.nav-bg .nevigetion .deal .deal-list::-webkit-scrollbar-track {
   background-color: #f1f1f1;
   /* Color of the track */
 }
-.nevigetion .deal .deal-list::-webkit-scrollbar-thumb {
+.nav-bg .nevigetion .deal .deal-list::-webkit-scrollbar-thumb {
   background-color: #888;
   /* Color of the thumb */
   border-radius: 5px;
   /* Rounded corners for the thumb */
 }
-.nevigetion .deal .deal-list::-webkit-scrollbar-thumb:hover {
+.nav-bg .nevigetion .deal .deal-list::-webkit-scrollbar-thumb:hover {
   background-color: #555;
   /* Color of the thumb on hover */
 }
-.nevigetion .deal .deal-list::-webkit-scrollbar-corner {
+.nav-bg .nevigetion .deal .deal-list::-webkit-scrollbar-corner {
   background-color: #f1f1f1;
   /* Color of the corner */
 }
-.nevigetion .deal .deal-list .deal-box-1 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-1 {
   background-color: #e6f5f3;
   border-radius: 10px;
   padding: 10px 10px;
   margin-bottom: 20px;
   background-color: #e6f5f3;
 }
-.nevigetion .deal .deal-list .deal-box-1 .product-detail {
+.nav-bg .nevigetion .deal .deal-list .deal-box-1 .product-detail {
   padding-left: 10px;
 }
-.nevigetion .deal .deal-list .deal-box-1 .product-detail .product-name h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-1 .product-detail .product-name h4 a {
   font-weight: 600;
 }
-.nevigetion .deal .deal-list .deal-box-1 .product-detail h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-1 .product-detail h4 a {
   font-size: 16px;
   color: #222222;
   font-weight: 400;
 }
-.nevigetion .deal .deal-list .deal-box-1 .product-detail h4 span {
+.nav-bg .nevigetion .deal .deal-list .deal-box-1 .product-detail h4 span {
   color: #ff4f4f;
   text-decoration: line-through;
 }
-.nevigetion .deal .deal-list .deal-box-1 .product-detail h4 h4 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-1 .product-detail h4 h4 {
   color: #4a5568;
   font-size: 16px;
 }
-.nevigetion .deal .deal-list .deal-box-2 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-2 {
   background-color: #e6f5f3;
   border-radius: 10px;
   padding: 10px 10px;
   margin-bottom: 20px;
   background-color: #ffe5e5;
 }
-.nevigetion .deal .deal-list .deal-box-2 .product-detail {
+.nav-bg .nevigetion .deal .deal-list .deal-box-2 .product-detail {
   padding-left: 10px;
 }
-.nevigetion .deal .deal-list .deal-box-2 .product-detail .product-name h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-2 .product-detail .product-name h4 a {
   font-weight: 600;
 }
-.nevigetion .deal .deal-list .deal-box-2 .product-detail h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-2 .product-detail h4 a {
   font-size: 16px;
   color: #222222;
   font-weight: 400;
 }
-.nevigetion .deal .deal-list .deal-box-2 .product-detail h4 span {
+.nav-bg .nevigetion .deal .deal-list .deal-box-2 .product-detail h4 span {
   color: #ff4f4f;
   text-decoration: line-through;
 }
-.nevigetion .deal .deal-list .deal-box-2 .product-detail h4 h4 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-2 .product-detail h4 h4 {
   color: #4a5568;
   font-size: 16px;
 }
-.nevigetion .deal .deal-list .deal-box-3 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-3 {
   background-color: #e6f5f3;
   border-radius: 10px;
   padding: 10px 10px;
   margin-bottom: 20px;
   background-color: #fff2e2;
 }
-.nevigetion .deal .deal-list .deal-box-3 .product-detail {
+.nav-bg .nevigetion .deal .deal-list .deal-box-3 .product-detail {
   padding-left: 10px;
 }
-.nevigetion .deal .deal-list .deal-box-3 .product-detail .product-name h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-3 .product-detail .product-name h4 a {
   font-weight: 600;
 }
-.nevigetion .deal .deal-list .deal-box-3 .product-detail h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-3 .product-detail h4 a {
   font-size: 16px;
   color: #222222;
   font-weight: 400;
 }
-.nevigetion .deal .deal-list .deal-box-3 .product-detail h4 span {
+.nav-bg .nevigetion .deal .deal-list .deal-box-3 .product-detail h4 span {
   color: #ff4f4f;
   text-decoration: line-through;
 }
-.nevigetion .deal .deal-list .deal-box-3 .product-detail h4 h4 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-3 .product-detail h4 h4 {
   color: #4a5568;
   font-size: 16px;
 }
-.nevigetion .deal .deal-list .deal-box-4 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-4 {
   background-color: #e6f5f3;
   border-radius: 10px;
   padding: 10px 10px;
   margin-bottom: 20px;
   background-color: #e6f5f3;
 }
-.nevigetion .deal .deal-list .deal-box-4 .product-detail {
+.nav-bg .nevigetion .deal .deal-list .deal-box-4 .product-detail {
   padding-left: 10px;
 }
-.nevigetion .deal .deal-list .deal-box-4 .product-detail .product-name h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-4 .product-detail .product-name h4 a {
   font-weight: 600;
 }
-.nevigetion .deal .deal-list .deal-box-4 .product-detail h4 a {
+.nav-bg .nevigetion .deal .deal-list .deal-box-4 .product-detail h4 a {
   font-size: 16px;
   color: #222222;
   font-weight: 400;
 }
-.nevigetion .deal .deal-list .deal-box-4 .product-detail h4 span {
+.nav-bg .nevigetion .deal .deal-list .deal-box-4 .product-detail h4 span {
   color: #ff4f4f;
   text-decoration: line-through;
 }
-.nevigetion .deal .deal-list .deal-box-4 .product-detail h4 h4 {
+.nav-bg .nevigetion .deal .deal-list .deal-box-4 .product-detail h4 h4 {
   color: #4a5568;
   font-size: 16px;
 }
 
+.banner {
+  height: 100%;
+  width: 100%;
+}
 .banner .banner-img {
   z-index: -1;
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
-  background-image: url(../img/bg-img.jpg);
-  background-repeat: no-repeat;
+  left: 0;
+  object-fit: cover;
+}
+.banner .banner-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.banner .banner-img .banner-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.banner .banner-img .banner-box h1 {
+  width: 80%;
+  font-size: calc(31px + 30 * (100vw - 320px) / 1600);
+  text-transform: inherit;
+  font-weight: 600 !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -18px;
+}
+.banner .banner-img .banner-box p {
+  font-size: calc(16px + 2 * (100vw - 320px) / 1600);
+  font-weight: 400;
+  margin-top: calc(4px + 8 * (100vw - 320px) / 1600);
+  margin-bottom: 0;
+  color: #4a5568;
+  line-height: 1.4;
 }
 .banner .banner-item {
   background-image: url(../img/1.jpg);
