@@ -10,56 +10,7 @@ export const Header = () => {
     return (
         <>
             {/* ===top-bar-start=== */}
-            <section className="top-bar">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xxl-12 col-xl-12 d-flex justify-content-between">
-                            <div className="col-xxl-2 col-xl-2 d-xs-none d-sm-none d-xxl-flex">
-                                <i className="ri-map-pin-line" />
-                                <span className="text-white">1418 Riverwood Drive, CA 96052, US</span>
-                            </div>
-                            <div className="col-xxl-7 col-xl-9 d-xs-none d-sm-none d-xl-flex">
-                                <div className="top-bar-offer">
-                                    {/* <div className="changebox text-center">
-                                        <span>"Something you love is now on sale <a href="#">Buy Now!</a>"</span><br />
-                                        <span>"<span>Welcome to Fastkart!</span> Wrap new offers/gift every signle day on
-                                            Weekends. <span>New Coupon Code: Fast024</span> "</span><br />
-                                    </div> */}
-                                </div>
-                            </div>
-                            <div className="col-xxl-3 col-xs-12 col-xl-3 col-sm-12">
-                                <div className="top-bar-right d-flex justify-content-end">
-                                    <div className="language">
-                                        <a className="d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}>
-                                            <span> <img src="./public/img/united-states-of-america.png" width={20} alt />
-                                                English</span><i className="ri-arrow-down-s-line" />
-                                        </a>
-                                        <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="#"><img src="./public/img/united-states-of-america.png" width={20} alt />
-                                                English</a></li>
-                                            <li><a className="dropdown-item" href="#"><img src="./public/img/germany (1).png" width={20} alt />
-                                                Germany</a></li>
-                                            <li><a className="dropdown-item" href="#"><img src="./public/img/turkey.png" width={20} alt /> Turkey</a></li>
-                                        </ul>
-                                    </div>
-                                    <div className="desh">|</div>
-                                    <div className="currency">
-                                        <a className="d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}>
-                                            USD
-                                            <i className="ri-arrow-down-s-line" />
-                                        </a>
-                                        <ul className="dropdown-menu">
-                                            <li><a className="dropdown-item" href="#">AUD</a></li>
-                                            <li><a className="dropdown-item" href="#">EUR</a></li>
-                                            <li><a className="dropdown-item" href="#">CNY</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+           
             {/* ===top-bar-end=== */}
             {/* ===header-start=== */}
             <section>

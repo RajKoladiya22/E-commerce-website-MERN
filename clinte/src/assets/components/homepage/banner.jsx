@@ -60,8 +60,9 @@ export const Banner = () => {
     return (
         <>
             {/* ===banner-start=== */}
-            <section className="banner py-5">
-                <div className="container">
+            <section className="banner py-5 vh-100">
+                <div className="banner-img"></div>
+                {/* <div className="container">
                     <div className="row">
                         <div className="col-xxl-8 col-xl-8 col-xs-12 col-sm-12">
                             <div className="banner-item">
@@ -178,7 +179,7 @@ export const Banner = () => {
                             </Slider>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
             {/* ===banner-end=== */}
         </>
