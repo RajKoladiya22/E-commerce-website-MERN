@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const LoginController = require('../controller/loginController');
 const verifyToken = require('../utils/auth')
 

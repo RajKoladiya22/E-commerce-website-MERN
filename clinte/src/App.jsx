@@ -8,10 +8,12 @@ import { LoginPage } from './assets/pages/registerPage/loginPage'
 import { ProtectedRoute } from './assets/utils/ProtectedRoute'
 import { useEffect } from 'react'
 import { LOGOUT_USER } from './assets/redux/action/loginAction';
+import { AdminHome } from './assets/admin/pages/Adminhome/Adminhome';
 
 
 export const App = () => {
   const dispatch = useDispatch();
+  
 
 
   return (
@@ -20,8 +22,11 @@ export const App = () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path='/' element={<Home />} />
+          <Route element={<ProtectedRoute allowedRoles={['user', 'admin']}/>}>
+            <Route path="/" element={<Home />} />
+          </Route>
+          <Route element={<ProtectedRoute allowedRoles={['admin']}/>}>
+            <Route path="/admin" element={<AdminHome />} />
           </Route>
         </Routes>
       </BrowserRouter>

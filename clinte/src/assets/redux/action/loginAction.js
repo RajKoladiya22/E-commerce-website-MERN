@@ -26,12 +26,24 @@ export const LOGIN_USER = (data, navigate) => {
       
 
       if (response.status === 201) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
+        const { token } = response.data.data; 
+
+        // Save token and role in localStorage
+        localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("user", JSON.stringify(response.data.data));
         dispatch({
           type: "LOGIN_USER",
-          payload: response.data.token,
+          payload: token,
+          data : response.data.data
         });
-        navigate("/");
+        if(response.data.data.role == 'admin'){
+          navigate('/admin');
+          
+        }else{
+          navigate("/");
+          
+        }
+
       } else {
         toast(`Login Failed`);
         toast("Login Failed");
@@ -42,6 +54,7 @@ export const LOGIN_USER = (data, navigate) => {
     }
   };
 };
+
 
 export const LOGOUT_USER = () => {
   return async (dispatch) => {

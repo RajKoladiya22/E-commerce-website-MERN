@@ -32,11 +32,10 @@ const verifyToken = (req, res, next) => {
     }
 
     // Log decoded token payload for debugging
-    //console.log("Decoded token:", decoded);
+    console.log("Decoded token:", decoded);
 
-   
 
-    req.userId = decoded.id;
+    req.user = decoded;
     next();
   });
 };

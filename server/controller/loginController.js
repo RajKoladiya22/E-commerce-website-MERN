@@ -4,7 +4,7 @@ const { generateToken } = require("../utils/jwt");
 
 const Register = async (req, res) => {
   try {
-    const { name, email, password, cpassword } = req.body;
+    const { name, email, password, cpassword, role } = req.body;
     const user = await RegisterModel.findOne({email : email})
     if(!user){
       // Create a new user
@@ -13,6 +13,7 @@ const Register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role
     });
 
     // Respond with success
@@ -24,7 +25,7 @@ const Register = async (req, res) => {
     }else{
       return res.status(500).send({
         success: false,
-        message: "Email Already Used",
+        message: "Email Already Exists",
       });
     }
   } catch (err) {
@@ -61,11 +62,18 @@ const login = async (req, res) => {
 
     console.log(token);
 
+    let userData = {
+      name : user.name,
+      email : user.email,
+      role : user.role,
+      token : token
+    }
+
     return res.status(201).send({
       success: true,
       message: "User successfully logged in",
-      token,
-      data: user,
+      // token,
+      data: userData,
     });
   } catch (err) {
     console.error("Login error:", err);
@@ -78,10 +86,12 @@ const login = async (req, res) => {
 
 const AuthUser = async (req, res) => {
   try {
+    const { role } = req.user; 
     res.status(200).send({
         success: true,
         message: "This is a protected route",
         userId: req._id,
+        role: role 
       });
   } catch (err) {
     console.error("Login error:", err);

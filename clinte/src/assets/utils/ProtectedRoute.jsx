@@ -2,22 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Route, Navigate, Outlet } from 'react-router-dom';
 import axios from './axiosConfig';
 import './loader.css'
+import { toast } from 'react-toastify';
 
-export const ProtectedRoute = () => {
+export const ProtectedRoute = ({ allowedRoles }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [role, setRole] = useState('')
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
         const response = await axios.get('/api/v1/loginAuth');
+
         if (response.data.success) {
           setIsAuthenticated(true);
+          setRole(response.data.role);
         } else {
-          setIsAuthenticated(false);
+          clearLocalStorage()
+
         }
       } catch (error) {
-        setIsAuthenticated(false);
+        clearLocalStorage()
       } finally {
         setIsLoading(false);
       }
@@ -25,6 +30,12 @@ export const ProtectedRoute = () => {
 
     verifyToken();
   }, []);
+
+  const clearLocalStorage = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsAuthenticated(false);
+  };
 
   if (isLoading) {
     return <>
@@ -40,5 +51,14 @@ export const ProtectedRoute = () => {
     </>;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />; 
+  }
+
+  if (allowedRoles && !allowedRoles.includes(role)) {
+    toast.error('Unauthorized Access');
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />;
 };
