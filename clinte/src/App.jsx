@@ -9,6 +9,7 @@ import { ProtectedRoute } from './assets/utils/ProtectedRoute'
 import { useEffect } from 'react'
 import { LOGOUT_USER } from './assets/redux/action/loginAction';
 import { AdminHome } from './assets/admin/pages/Adminhome/Adminhome';
+import Cart from './assets/pages/cart/cart';
 
 
 export const App = () => {
@@ -22,8 +23,9 @@ export const App = () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
-          <Route element={<ProtectedRoute allowedRoles={['user', 'admin']}/>}>
             <Route path="/" element={<Home />} />
+          <Route element={<ProtectedRoute allowedRoles={['user', 'admin']}/>}>
+            <Route path="/cart" element={<Cart />} />
           </Route>
           <Route element={<ProtectedRoute allowedRoles={['admin']}/>}>
             <Route path="/admin" element={<AdminHome />} />

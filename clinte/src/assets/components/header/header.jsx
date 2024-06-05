@@ -2,21 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ProtectedRoute } from '../../utils/ProtectedRoute';
 import { useDispatch, useSelector } from 'react-redux';
+import { LOGOUT_USER } from '../../redux/action/loginAction';
 
 
 
 
 export const Header = () => {
-    const [userdata, setUserdata] = useState('')
-    const data = useSelector((state)=> state.data.user)
-    console.log(userdata);
- 
+    
+        const dispatch = useDispatch();
 
-    useEffect(()=>{
-        if(data){
-            setUserdata(data)
-        }
-    },[data])
+
+        const    userdata = JSON.parse(localStorage.getItem('user')) || ""
+
 
     return (
         <>
@@ -315,7 +312,8 @@ export const Header = () => {
                                                 <div className="true d-xs-none d-sm-none d-xl-flex">
                                                     <div className>
                                                         <span>Hello,</span>
-                                                        <h5>{userdata.name}</h5>
+                                                        <h5>{userdata.name  && userdata.name ? userdata.name :  'Guest'}</h5>
+
                                                     </div>
                                                 </div>
                                                 
@@ -326,26 +324,24 @@ export const Header = () => {
                                                         <li><a href="Forgot-Password.html">
                                                             <h3>Forgot Password</h3>
                                                         </a></li>
-                                                        <li><a href="#">
-                                                            <h3>Log Out</h3>
+                                                        <li><a onClick={()=>dispatch(LOGOUT_USER())}>
+                                                            <h3>Log Outt</h3>
                                                         </a></li>
                                                     </ul>
                                                 </div>
                                                     ) : (
                                                         <div className="true user-box">
                                                     <ul>
-                                                        {/* <li><a href="#">
+                                                        <li><Link to={'/login'}>
                                                             <h3>Log in</h3>
-                                                        </a></li> */}
+                                                        </Link></li>
                                                         <li><Link to={'/register'}>
                                                             <h3>Register</h3>
                                                         </Link></li>
                                                         {/* <li><a href="Forgot-Password.html">
                                                             <h3>Forgot Password</h3>
                                                         </a></li> */}
-                                                        <li><a href="#">
-                                                            <h3>Log Out</h3>
-                                                        </a></li>
+                                                       
                                                     </ul>
                                                 </div>
                                                     )

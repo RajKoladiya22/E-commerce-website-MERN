@@ -34,7 +34,7 @@ export const LOGIN_USER = (data, navigate) => {
         dispatch({
           type: "LOGIN_USER",
           payload: token,
-          data : response.data.data
+
         });
         if(response.data.data.role == 'admin'){
           navigate('/admin');
@@ -59,6 +59,8 @@ export const LOGIN_USER = (data, navigate) => {
 export const LOGOUT_USER = () => {
   return async (dispatch) => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     dispatch({ type: 'LOGOUT' });
+    window.location.reload();
   };
 };
