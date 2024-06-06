@@ -1,6 +1,6 @@
 const product = require("../model/productModel");
 const ProductModel = require("../model/productModel");
-const cloudinary = require('cloudinary').v2
+const cloudinary = require("cloudinary").v2;
 
 const AddProduct = async (req, res) => {
   try {
@@ -10,24 +10,24 @@ const AddProduct = async (req, res) => {
       productDiscription,
       productOfferPrice,
       productPrice,
-      productStatus
+      productStatus,
     } = req.body;
     const pro = await ProductModel.findOne({ productName: productName });
 
-    
-    
     if (!pro) {
-      const img = await cloudinary.uploader.upload(req.file.path);
-      
+      const img = await cloudinary.uploader.upload(req.file.path, {
+        folder: "MERN_Products",
+      });
+
       const data = await ProductModel.create({
         categoryId,
         productName,
         productDiscription,
         productOfferPrice,
         productPrice,
-        productStatus ,
-        productImage : img.secure_url,
-        ImagesPubligId : img.public_id
+        productStatus,
+        productImage: img.secure_url,
+        ImagesPubligId: img.public_id,
       });
       if (data) {
         return res.status(201).send({
@@ -76,20 +76,21 @@ const DeleteProduct = async (req, res) => {
 
     const img = await ProductModel.findById(id);
 
-    await cloudinary.uploader.destroy(img.ImagesPubligId);
-    await ProductModel.findByIdAndDelete(id)
+    await cloudinary.uploader.destroy(img.ImagesPubligId, {
+      folder: "MERN_Products",
+    });
+    await ProductModel.findByIdAndDelete(id);
 
     return res.status(201).send({
       success: true,
       message: "Product Deleted",
     });
-
-
   } catch (err) {
     console.log(err);
     return res.status(500).send({
       success: false,
-      message: "Internal Server Error", err,
+      message: "Internal Server Error",
+      err,
     });
   }
 };
@@ -103,65 +104,67 @@ const UpdateProduct = async (req, res) => {
       productDiscription,
       productOfferPrice,
       productPrice,
-      productStatus
+      productStatus,
     } = req.body;
-    const pro = await ProductModel.findOne({ productName, _id: { $ne: id } });
 
-    const delImg = await ProductModel.findById(id);
-    if (!delImg) {
-      return res.status(404).send({
-        success: false,
-        message: "Product Not Found",
+    if (req.file) {
+      const img = await cloudinary.uploader.upload(req.file.path, {
+        folder: "MERN_Products",
+      });
+      const delImg = await ProductModel.findById(id);
+      if (!delImg) {
+        return res.status(404).send({
+          success: false,
+          message: "Product Not Found",
+        });
+      }
+      await cloudinary.uploader.destroy(delImg.ImagesPubligId, {
+        folder: "MERN_Products",
+      });
+
+      await ProductModel.findByIdAndUpdate(id, {
+        categoryId: categoryId,
+        productName: productName,
+        productDiscription: productDiscription,
+        productOfferPrice: productOfferPrice,
+        productPrice: productPrice,
+        productStatus: productStatus,
+        productImage: img.secure_url,
+        ImagesPubligId: img.public_id,
+      });
+      return res.status(201).send({
+        success: true,
+        message: "Product Updated",
+      });
+    } else {
+      const img = await cloudinary.uploader.upload(req.file.path, {
+        folder: "MERN_Products",
+      });
+      await ProductModel.findByIdAndUpdate(id, {
+        categoryId: categoryId,
+        productName: productName,
+        productDiscription: productDiscription,
+        productOfferPrice: productOfferPrice,
+        productPrice: productPrice,
+        productStatus: productStatus,
+        productImage: img.secure_url,
+        ImagesPubligId: img.public_id,
+      });
+
+      return res.status(201).send({
+        success: true,
+        message: "Product Updated",
       });
     }
-    
-      if(req.file){
-        const img = await cloudinary.uploader.upload(req.file.path);
-
-        await cloudinary.uploader.destroy(delImg.ImagesPubligId);
-       
-        await ProductModel.findByIdAndUpdate({
-          categoryId : categoryId,
-          productName : productName,
-          productDiscription : productDiscription,
-          productOfferPrice : productOfferPrice,
-          productPrice : productPrice,
-          productStatus : productStatus,
-          productImage : img.secure_url,
-          ImagesPubligId : img.public_id
-          })
-          return res.status(201).send({
-            success: true,
-            message: "Product Updated",
-          });
-      }else{
-        const img = await cloudinary.uploader.upload(req.file.path);
-        await ProductModel.findByIdAndUpdate({
-          categoryId : categoryId,
-          productName : productName,
-          productDiscription : productDiscription,
-          productOfferPrice : productOfferPrice,
-          productPrice : productPrice,
-          productStatus : productStatus,
-          productImage : img.secure_url,
-          ImagesPubligId : img.public_id
-          })
-
-          return res.status(201).send({
-            success: true,
-            message: "Product Updated",
-          });
-      }
-    
   } catch (err) {
     console.log(err);
     return res.status(500).send({
       success: false,
-      message: "Internal Server Error", err,
+      message: "Internal Server Error",
+      err,
     });
   }
 };
-
 
 module.exports = {
   AddProduct,
