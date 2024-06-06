@@ -1,5 +1,25 @@
 const CategoryModel = require("../model/categoryModel");
 
+const Viewegory = async (req, res) => {
+  try {
+    const category = await CategoryModel.find({});
+
+    if (category) {
+      return res.status(500).send({
+        success: false,
+        message: "Category Already Exists",
+        category,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 const Addcategory = async (req, res) => {
   try {
     const { category } = req.body;
@@ -9,7 +29,7 @@ const Addcategory = async (req, res) => {
 
     if (!cat) {
       data = await CategoryModel.create({
-        category
+        category,
       });
       if (data) {
         return res.status(201).send({
@@ -33,6 +53,7 @@ const Addcategory = async (req, res) => {
   }
 };
 
-module.exports={
-    Addcategory,
-}
+module.exports = {
+  Viewegory,
+  Addcategory,
+};

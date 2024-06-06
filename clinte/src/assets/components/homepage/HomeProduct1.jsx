@@ -87,7 +87,7 @@ export const HomeProduct1 = () => {
                                                 return(
                                                     <div className="true product-box">
                                                     <div className="true product-img text-center">
-                                                        <img src="./public/img/leaves.png" className="true img-fluid" style={{ height: 120, objectFit: 'contain' }} />
+                                                        <img src={val.productImage} className="true img-fluid" style={{ height: 120, objectFit: 'contain' }} />
                                                         <div className="true img-option">
                                                             <ul className="true d-flex">
                                                                 <li>
@@ -107,8 +107,8 @@ export const HomeProduct1 = () => {
                                                             {val.productName}
                                                         </h6>
                                                         <p>
-                                                            pro.pro_cprice <span>
-                                                                {val.price}
+                                                        &#x20B9;{val.productOfferPrice} <span>
+                                                                {val.productPrice}
                                                             </span>
                                                         </p>
                                                         <i className="true fa-solid fa-star" style={{ color: '#ffb321' }} />
@@ -116,7 +116,14 @@ export const HomeProduct1 = () => {
                                                         <i className="true fa-solid fa-star" style={{ color: '#ffb321' }} />
                                                         <i className="true fa-solid fa-star" style={{ color: '#ffb321' }} />
                                                         <i className="true fa-regular fa-star" style={{ color: '#ffb321' }} />
-                                                        <span>In Stock</span>
+                                                        
+                                                        {
+                                                            val.productStatus === 1 ?(
+                                                                <span>In Stock</span>
+                                                            ) : (
+                                                                <span style={{ color: 'red' }}>Out of Stock</span>
+                                                            )
+                                                        }
                                                         <a href="/addtocart?id">
                                                             <button className="true btn-add-cart addcart-button" tabIndex={0}>
                                                                 Add

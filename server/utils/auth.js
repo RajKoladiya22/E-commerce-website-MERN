@@ -31,9 +31,6 @@ const verifyToken = (req, res, next) => {
       });
     }
 
-    // Log decoded token payload for debugging
-    console.log("Decoded token:", decoded);
-
 
     req.user = decoded;
     next();

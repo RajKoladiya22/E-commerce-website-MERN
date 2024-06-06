@@ -10,14 +10,31 @@ const ProductModel = mongoose.Schema({
     type: String,
     required: true,
   },
-  price: {
+  productDiscription: {
     type: String,
     required: true,
   },
-//   icon : {
-//       type : String,
-//       required : true,
-//   },
+  productOfferPrice: {
+    type: Number,
+    required: true,
+  },
+  productPrice: {
+    type: Number,
+    required: true,
+  },
+  productStatus: {
+    type: Number,
+    default : 1
+  },
+  productImage : {
+      type : String,
+      required : true,
+  },
+  ImagesPubligId : {
+      type : String,
+      required : true,
+  },
+
 });
 
 const product = mongoose.model("product", ProductModel);
