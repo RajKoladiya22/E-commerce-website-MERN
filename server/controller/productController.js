@@ -117,7 +117,7 @@ const UpdateProduct = async (req, res) => {
     
       if(req.file){
         const img = await cloudinary.uploader.upload(req.file.path);
-        
+
         await cloudinary.uploader.destroy(delImg.ImagesPubligId);
        
         await ProductModel.findByIdAndUpdate({
