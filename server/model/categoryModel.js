@@ -5,10 +5,18 @@ const CategoryModel = mongoose.Schema({
         type : String,
         required : true,
     },
-    // icon : {
-    //     type : String,
-    //     required : true,
-    // },
+    status : {
+        type : Number,
+        default : 1,
+    },
+    icon : {
+        type : String,
+        required : true,
+    },
+    IconPubligId : {
+        type : String,
+        required : true,
+    },
 });
 
 const category = mongoose.model('category', CategoryModel);

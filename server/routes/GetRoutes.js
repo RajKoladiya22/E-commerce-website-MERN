@@ -6,7 +6,7 @@ const categoryController = require('../controller/categoryController')
 const productController = require('../controller/productController')
 
 //Category
-routes.get('/api/v1/Categorys', categoryController.Viewegory);
+routes.get('/api/v1/Categorys',verifyToken, categoryController.Viewegory);
 //Product
 routes.get('/api/v1/Products', productController.ViewProduct);
 
