@@ -7,7 +7,7 @@ export const REGISTER_USER = async (data, navigate) => {
     const response = await axios.post("/api/v1/register", data);
     if (response.status === 201) {
       toast("User Registered Successfully");
-      // navigate('/')
+      navigate('/')
       console.log("User Registered Successfully", response.data);
     } else {
       toast("Registration Failed");

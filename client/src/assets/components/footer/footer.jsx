@@ -22,7 +22,7 @@ export const Footer = () => {
                                     </div>
                                 </div>
                                 <div className="true col-xxl-3 col-xl-3 col-md-6 ">
-                                    <div className="true footer-head b-r d-flex justify-content-xxl-center justify-content-md-start align-items-center">
+                                    <div className="true footer-head b-r d-flex justify-content-xxl-center justify-content-md-start  align-items-center">
                                         <img src="./public/img/discount.svg" width={40} alt />
                                         <h2>Daily Mega Discounts</h2>
                                     </div>

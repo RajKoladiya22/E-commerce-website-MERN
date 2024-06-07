@@ -10,6 +10,7 @@ export const Register = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setCPassword] = useState("");
 
@@ -21,12 +22,14 @@ export const Register = () => {
             let data = {
                 name,
                 email,
+                role,
                 password
             };
 
             dispatch(REGISTER_USER(data, navigate));
             setName('');
             setEmail('');
+            setRole('');
             setPassword('');
             setCPassword('')
         }
@@ -73,6 +76,9 @@ export const Register = () => {
                                                 </div>
                                                 <div className="form-group">
                                                     <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} value={email} placeholder="Email address" required />
+                                                </div>
+                                                <div className="form-group">
+                                                    <input type="text" id="email" onChange={(e) => setRole(e.target.value)} value={role} placeholder="Admin or User" required />
                                                 </div>
                                                 <div className="form-group">
                                                     <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="Password" required />

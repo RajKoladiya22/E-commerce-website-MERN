@@ -21,12 +21,12 @@
         animation: 2s fancy infinite alternate;
         
         &:nth-child(1) {
-          border-left-color: #979fd0;
-          border-right-color: #979fd0;
+          border-left-color: #095850;
+          border-right-color: #095850;
         }
         &:nth-child(2) {
-          border-top-color: #979fd0;
-          border-bottom-color: #979fd0;
+          border-top-color: #095850ca;
+          border-bottom-color: #095850ca;
           animation-delay: 1s;
         }
       }
@@ -34,7 +34,7 @@
       &.dot {
         width: 1rem;
         height: 1rem;
-        background: #979fd0;
+        background: #095850ec;
       }
     }
   }
@@ -42,6 +42,21 @@
   @keyframes fancy {
     to {
       transform: rotate(360deg) scale(0.5);
+      
+    }
+    0% { opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  .loader-load{
+    h4{
+      color: #4a5568;
+      animation: 2s load infinite alternate;
     }
   }
-  
+
+  @keyframes load {
+    0% { opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }

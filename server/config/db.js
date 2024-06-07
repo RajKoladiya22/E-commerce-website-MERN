@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb+srv://Raj:uq5rMhO1FfkLkOU3@cluster0.fvudrsz.mongodb.net/MERN-PROJECT');
-mongoose.connect('mongodb://localhost:27017/MERN-PROJECT');
+mongoose.connect('mongodb+srv://Raj:uq5rMhO1FfkLkOU3@cluster0.fvudrsz.mongodb.net/MERN-PROJECT');
+// mongoose.connect('mongodb://localhost:27017/MERN-PROJECT');
 
 const db = mongoose.connection;
 

@@ -14,7 +14,7 @@ const upload = multer({ storage }).single('productImage');
 //Category
 routes.post('/api/v1/createCategory', categoryController.Addcategory);
 //Product
-routes.post('/api/v1/addProduct', upload, productController.AddProduct);
+routes.post('/api/v1/addProduct',verifyToken, upload, productController.AddProduct);
 
 
 

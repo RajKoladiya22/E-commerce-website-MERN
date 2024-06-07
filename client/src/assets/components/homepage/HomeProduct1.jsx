@@ -3,13 +3,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GET_PRODUCT } from '../../redux/action/productAction';
 import { useDispatch, useSelector } from 'react-redux';
-import  axios  from "../../utils/axiosConfig";
+import '../../utils/loader.css'
 
 export const HomeProduct1 = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.product.product);
     const [product, setProduct] = useState([]);
-    
+
     useEffect(() => {
         dispatch(GET_PRODUCT());
     }, [dispatch]);
@@ -17,11 +17,11 @@ export const HomeProduct1 = () => {
     useEffect(() => {
         if (products.length !== product.length) {
             setProduct(products.data.product);
-            
+
         }
     }, [products]);
 
-    if (!product.length) return <div>Loading...</div>;
+
 
 
     return (
@@ -81,11 +81,22 @@ export const HomeProduct1 = () => {
                                 <div className="true save-today-products">
                                     <div className="true slick-wrapper">
                                         <div id="slick1">
-                                        <div className="true slide-item flex-wrap">
-                                           {
-                                            product.map((val)=>{
-                                                return(
-                                                    <div className="true product-box">
+                                            <div className="true slide-item flex-wrap">
+                                                {
+
+                                                    !product.length ? <div className='loader-load text-center'>
+                                                        <div className="boxify d-flex justify-content-center ">
+                                                            <div class="fancy-spinner">
+                                                                <div class="ring"></div>
+                                                                <div class="ring"></div>
+                                                                <div class="dot"></div>
+                                                            </div>
+                                                        </div>
+                                                        <h4>Loading Product Data..</h4>
+                                                    </div> :
+                                                    product.map((val) => {
+                                                        return (
+                                                <div className="true product-box">
                                                     <div className="true product-img text-center">
                                                         <img src={val.productImage} className="true img-fluid" style={{ height: 120, objectFit: 'contain' }} />
                                                         <div className="true img-option">
@@ -107,7 +118,7 @@ export const HomeProduct1 = () => {
                                                             {val.productName}
                                                         </h6>
                                                         <p>
-                                                        &#x20B9;{val.productOfferPrice} <span>
+                                                            &#x20B9;{val.productOfferPrice} <span>
                                                                 {val.productPrice}
                                                             </span>
                                                         </p>
@@ -116,9 +127,9 @@ export const HomeProduct1 = () => {
                                                         <i className="true fa-solid fa-star" style={{ color: '#ffb321' }} />
                                                         <i className="true fa-solid fa-star" style={{ color: '#ffb321' }} />
                                                         <i className="true fa-regular fa-star" style={{ color: '#ffb321' }} />
-                                                        
+
                                                         {
-                                                            val.productStatus === 1 ?(
+                                                            val.productStatus === 1 ? (
                                                                 <span>In Stock</span>
                                                             ) : (
                                                                 <span style={{ color: 'red' }}>Out of Stock</span>
@@ -135,12 +146,12 @@ export const HomeProduct1 = () => {
                                                     </div>
                                                 </div>
                                                 )
-                                            })
-                                           }
-                                                  
-                                                
+                                                    })
+                                                }
+
+
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>

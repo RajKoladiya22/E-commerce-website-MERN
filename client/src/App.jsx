@@ -10,6 +10,8 @@ import { useEffect } from 'react'
 import { LOGOUT_USER } from './assets/redux/action/loginAction';
 import { AdminHome } from './assets/admin/pages/Adminhome/Adminhome';
 import Cart from './assets/pages/cart/cart';
+import { Category } from './assets/admin/pages/category/Admincategory';
+import { AdmiProduct } from './assets/admin/pages/product/AdminProduct';
 
 
 export const App = () => {
@@ -29,6 +31,8 @@ export const App = () => {
           </Route>
           <Route element={<ProtectedRoute allowedRoles={['admin']}/>}>
             <Route path="/admin" element={<AdminHome />} />
+            <Route path="/admincategory" element={<Category />} />
+            <Route path="/adminproduct" element={<AdmiProduct />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -3,24 +3,26 @@ import { Link, NavLink } from 'react-router-dom';
 import { ProtectedRoute } from '../../utils/ProtectedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT_USER } from '../../redux/action/loginAction';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 export const Header = () => {
-    
-        const dispatch = useDispatch();
+
+    const dispatch = useDispatch();
 
 
-        const    userdata = JSON.parse(localStorage.getItem('user')) || ""
+    const userdata = JSON.parse(localStorage.getItem('user')) || ""
 
 
     return (
         <>
             {/* ===top-bar-start=== */}
-           
+
             {/* ===top-bar-end=== */}
             {/* ===header-start=== */}
+            <ToastContainer />
             <section>
                 <header>
                     <div className="true container">
@@ -312,38 +314,38 @@ export const Header = () => {
                                                 <div className="true d-xs-none d-sm-none d-xl-flex">
                                                     <div className>
                                                         <span>Hello,</span>
-                                                        <h5>{userdata.name  && userdata.name ? userdata.name :  'Guest'}</h5>
+                                                        <h5>{userdata.name && userdata.name ? userdata.name : 'Guest'}</h5>
 
                                                     </div>
                                                 </div>
-                                                
+
                                                 {
                                                     userdata && userdata.name ? (
                                                         <div className="true user-box">
-                                                    <ul>
-                                                        <li><a href="Forgot-Password.html">
-                                                            <h3>Forgot Password</h3>
-                                                        </a></li>
-                                                        <li><a onClick={()=>dispatch(LOGOUT_USER())}>
-                                                            <h3>Log Outt</h3>
-                                                        </a></li>
-                                                    </ul>
-                                                </div>
+                                                            <ul>
+                                                                <li><a href="Forgot-Password.html">
+                                                                    <h3>Forgot Password</h3>
+                                                                </a></li>
+                                                                <li><a onClick={() => dispatch(LOGOUT_USER())}>
+                                                                    <h3>Log Outt</h3>
+                                                                </a></li>
+                                                            </ul>
+                                                        </div>
                                                     ) : (
                                                         <div className="true user-box">
-                                                    <ul>
-                                                        <li><Link to={'/login'}>
-                                                            <h3>Log in</h3>
-                                                        </Link></li>
-                                                        <li><Link to={'/register'}>
-                                                            <h3>Register</h3>
-                                                        </Link></li>
-                                                        {/* <li><a href="Forgot-Password.html">
+                                                            <ul>
+                                                                <li><Link to={'/login'}>
+                                                                    <h3>Log in</h3>
+                                                                </Link></li>
+                                                                <li><Link to={'/register'}>
+                                                                    <h3>Register</h3>
+                                                                </Link></li>
+                                                                {/* <li><a href="Forgot-Password.html">
                                                             <h3>Forgot Password</h3>
                                                         </a></li> */}
-                                                       
-                                                    </ul>
-                                                </div>
+
+                                                            </ul>
+                                                        </div>
                                                     )
                                                 }
                                             </div>
@@ -376,7 +378,7 @@ export const Header = () => {
                                                 <li>
                                                     <a href="#" className="true d-flex align-items-center justify-content-between">
                                                         <div className="true d-flex align-items-center">
-                                                            <img src="<%= cat.cat_icon %>" width={23} alt />
+                                                            <img src="" width={23} alt />
                                                             <h3>
                                                                 cat.cat_name
                                                             </h3>
@@ -637,11 +639,11 @@ export const Header = () => {
                                                 <div className="true label">New</div>
                                             </li>
                                             <li><Link to={'/admin'} className="true d-flex align-items-center">
-                                                
+
                                                 {userdata.role === 'admin' ? <h3>Admin</h3> : ''}
-                                                
+
                                             </Link>
-                                                
+
                                             </li>
                                         </ul>
                                     </nav>

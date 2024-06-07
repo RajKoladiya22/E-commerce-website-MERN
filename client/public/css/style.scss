@@ -42,7 +42,13 @@ ul {
 input {
     outline: none;
 }
-
+.Active{
+    background-color: #095850 !important;
+    font-weight: 500;
+    a{
+        color: white !important;
+    }
+}
 .ml-12 {
     margin-left: 12px;
 }
