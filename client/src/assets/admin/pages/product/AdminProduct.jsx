@@ -59,7 +59,7 @@ function MyVerticallyCenteredModal(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            
+
         >
             {
                 isLoading ? (
@@ -210,7 +210,7 @@ export const AdmiProduct = () => {
                     </div>
                     <div className="col-lg-10 col-xs-12 col-sm-12">
                         <Button variant="primary" onClick={() => setModalShow(true)}>
-                            Launch vertically centered modal
+                            Add Product
                         </Button>
 
                         <MyVerticallyCenteredModal

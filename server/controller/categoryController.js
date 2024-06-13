@@ -70,6 +70,15 @@ const DeleteCategory = async (req, res) => {
       folder: "MERN_Category",
     });
     await CategoryModel.findByIdAndDelete(id);
+   
+    const products = await ProductModel.find({ categoryId: id });
+
+    for (const product of products) {
+      await cloudinary.uploader.destroy(product.ImagesPubligId, {
+        folder: "MERN_Products",
+      });
+    }
+
     await ProductModel.deleteMany({ categoryId: id });
 
     return res.status(201).send({

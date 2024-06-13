@@ -161,7 +161,7 @@ export const Category = () => {
                     </div>
                     <div className="col-lg-10 col-xs-12 col-sm-12">
                         <Button variant="primary" onClick={() => setModalShow(true)}>
-                            Launch vertically centered modal
+                            Create Category
                         </Button>
 
                         <MyVerticallyCenteredModal
