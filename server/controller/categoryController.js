@@ -1,4 +1,5 @@
 const CategoryModel = require("../model/categoryModel");
+const ProductModel = require("../model/productModel")
 const cloudinary = require("cloudinary").v2;
 
 const Viewegory = async (req, res) => {
@@ -24,7 +25,6 @@ const Viewegory = async (req, res) => {
 const Addcategory = async (req, res) => {
   try {
     const { category, status } = req.body;
-    console.log(category);
 
     const cat = await CategoryModel.findOne({ category: category });
 
@@ -60,7 +60,34 @@ const Addcategory = async (req, res) => {
   }
 };
 
+const DeleteCategory = async (req, res) => {
+  try {
+    const id = req.query.id || req.body.id;
+
+    const img = await CategoryModel.findById(id);
+
+    await cloudinary.uploader.destroy(img.IconPubligId, {
+      folder: "MERN_Category",
+    });
+    await CategoryModel.findByIdAndDelete(id);
+    await ProductModel.deleteMany({ categoryId: id });
+
+    return res.status(201).send({
+      success: true,
+      message: "Category and associated products deleted",
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      err,
+    });
+  }
+};
+
 module.exports = {
   Viewegory,
   Addcategory,
+  DeleteCategory,
 };

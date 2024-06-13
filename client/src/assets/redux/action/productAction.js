@@ -21,7 +21,7 @@ export const GET_PRODUCT = () => {
 
 export const POST_PRODUCT = (product) => {
   return async (dispatch) => {
-    dispatch({ type: 'PRODUCT_UPLOAD_START' });
+    dispatch({ type: "PRODUCT_UPLOAD_START" });
     try {
       const response = await axios.post("/api/v1/addProduct", product, {
         headers: {
@@ -31,16 +31,34 @@ export const POST_PRODUCT = (product) => {
       if (response) {
         dispatch(GET_PRODUCT());
         toast(`${response.data.message}`);
-      } else {
-        console.log("not done");
       }
     } catch (err) {
       toast.error(`Error: ${err.response.data.message}`);
       console.log(`Error: ${err.response.data.message}`);
       console.log(err);
       return false;
-    }finally {
-      dispatch({ type: 'PRODUCT_UPLOAD_END' });
+    } finally {
+      dispatch({ type: "PRODUCT_UPLOAD_END" });
+    }
+  };
+};
+
+export const   DELETE_PRODUCT = (id) => {
+  console.log(id);
+  return async (dispatch) => {
+    const response = await axios.delete(`/api/v1/DeleteProduct?id=${id}`);
+    if (response) {
+      dispatch(GET_PRODUCT());
+      toast(`${response.data.message}`);
+    }
+
+    try {
+      console.log(id)
+    } catch (err) {
+      toast.error(`Error: ${err.response.data.message}`);
+      console.log(`Error: ${err.response.data.message}`);
+      console.log(err);
+      return false;
     }
   };
 };

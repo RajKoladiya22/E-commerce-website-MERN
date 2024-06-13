@@ -1,57 +1,45 @@
-
 import React, { useEffect, useState } from 'react';
 import { AdminNav } from '../../components/adminNav';
 import { Header } from '../../../components/header/header';
 import Container from 'react-bootstrap/esm/Container';
 import { Footer } from '../../../components/footer/footer';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../../utils/loader.css'
-import { POST_PRODUCT } from '../../../redux/action/productAction';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router';
 import '../../../../../public/css/style.css'
-import { GET_CATEGORY } from '../../../redux/action/categoryAction';
+import { DELETE_CATEGORY, GET_CATEGORY, POST_CATEGORY } from '../../../redux/action/categoryAction';
+import { MdOutlineDelete } from "react-icons/md";
 
 function MyVerticallyCenteredModal(props) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [productName, setProductName] = useState("");
-    const [categoryId, setCategoryId] = useState("");
-    const [productOfferPrice, setProductOfferPrice] = useState("");
-    const [productPrice, setProductPrice] = useState("");
-    const [productStatus, setProductStatus] = useState("");
-    const [productImage, setProductImage] = useState("");
-    const [productDiscription, setProductDiscription] = useState("");
+    const isLoading = useSelector((state) => state.category.isLoading);
+    const [category, setCategoryName] = useState("");
+    const [status, setStatus] = useState("");
+    const [icon, setCategoryIcon] = useState("");
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let ProductData = {
-            productName,
-            categoryId,
-            productOfferPrice,
-            productPrice,
-            productStatus,
-            productImage,
-            productDiscription
+        let CategoryData = {
+            category,
+            status,
+            icon
         }
-        console.log(ProductData);
-        // const formData = new FormData();
-        // formData.append('productName', productName);
-        // formData.append('categoryId', categoryId);
-        // formData.append('productOfferPrice', productOfferPrice);
-        // formData.append('productPrice', productPrice);
-        // formData.append('productStatus', productStatus);
-        // formData.append('productDiscription', productDiscription);
-        // formData.append('productImage', productImage);
+        console.log(CategoryData);
 
-        if (ProductData) {
-            dispatch(POST_PRODUCT(ProductData));
+        if (CategoryData) {
+            dispatch(POST_CATEGORY(CategoryData)).then(() => {
+                props.onHide();
+            });
+            setCategoryName("");
+            setStatus("");
+            setCategoryIcon("");
         }
     }
     return (
@@ -61,91 +49,80 @@ function MyVerticallyCenteredModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    <h2>Add Product</h2>
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <section className="register-page">
-                    <div className="login-contain">
-                        <div className="col-xxl-12 col-xl-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center ">
-                            <div className='w-100'>
-                                <div className="login-container">
-
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="form-group">
-                                            <input type="text" id="text"
-                                                onChange={(e) => setProductName(e.target.value)}
-                                                value={productName}
-                                                placeholder="Product Name"
-                                                required />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" id="email"
-                                                onChange={(e) => setCategoryId(e.target.value)}
-                                                value={categoryId}
-                                                placeholder="Product Category"
-                                                required
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" id="email"
-                                                onChange={(e) => setProductOfferPrice(e.target.value)}
-                                                value={productOfferPrice}
-                                                placeholder="Sell Price "
-                                                required
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" id="password"
-                                                onChange={(e) => setProductPrice(e.target.value)}
-                                                value={productPrice}
-                                                placeholder="Original Price"
-                                                required
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text" id="cpassword"
-                                                onChange={(e) => setProductStatus(e.target.value)}
-                                                value={productStatus}
-                                                placeholder="Status"
-                                                required
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="text"
-                                                onChange={(e) => setProductDiscription(e.target.value)}
-                                                value={productDiscription}
-                                                placeholder="Product Discription"
-                                                required
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            {/* <input type="file" id="cpassword"
-                                                onChange={(e)=>handleFileChange(e)}
-                                                value={productImage}
-                                                required
-                                            /> */}
-                                            <input type="file" 
-                                            onChange={(e)=>setProductImage(e.target.files[0])} required />
-                                        </div>
-
-                                        <button type="submit" className="login-btn" value="submit" >
-                                            Sign Up
-                                        </button>
-                                        <button type="submit" className="login-btn" value="submit"
-                                            OnClick={props.onHide}>
-                                            Sign Up
-                                        </button>
-                                    </form>
-
+            {
+                isLoading ? (
+                    <center>
+                        <div className="boxify d-flex justify-content-center position-absolute top-50" style={{ "left": "25%" }}>
+                            <div className="">
+                                <div class="fancy-spinner">
+                                    <div class="ring"></div>
+                                    <div class="ring"></div>
+                                    <div class="dot"></div>
                                 </div>
+                                <h2 style={{ color: "#095850" }}>Please Wait Category is Uploading....</h2>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </Modal.Body>
+                    </center>
+                ) :
+                    (
+                        <>
+                            <Modal.Header closeButton>
+                                <Modal.Title id="contained-modal-title-vcenter">
+                                    <h2>Create Category</h2>
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <section className="register-page">
+                                    <div className="login-contain">
+                                        <div className="col-xxl-12 col-xl-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center ">
+                                            <div className='w-100'>
+                                                <div className="login-container">
+
+                                                    <form onSubmit={handleSubmit}>
+                                                        <div className="form-group">
+                                                            <input type="text" id="text"
+                                                                onChange={(e) => setCategoryName(e.target.value)}
+                                                                value={category}
+                                                                placeholder="Category Name"
+                                                                required />
+                                                        </div>
+                                                        <div className="form-group">
+
+                                                            <select name="" className='w-100 border-0 py-3'
+                                                                onChange={(e) => setStatus(e.target.value)}
+                                                                value={status}
+                                                                placeholder="Status"
+                                                                required
+                                                            >
+                                                                <option value="" disabled>Status</option>
+                                                                <option value="1">Active</option>
+                                                                <option value="0">Deactive</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div className="form-group">
+                                                            <input type="file"
+                                                                onChange={(e) => setCategoryIcon(e.target.files[0])} required />
+                                                        </div>
+
+                                                        <button type="submit" className="login-btn" value="submit" >
+                                                            Create Category
+                                                        </button>
+                                                        {/* <button type="submit" className="login-btn" value="submit"
+                                            OnClick={props.onHide}>
+                                            Sign Up
+                                        </button> */}
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </Modal.Body>
+                        </>
+                    )
+            }
             {/* <Modal.Footer>
                 <Button >Close</Button>
             </Modal.Footer> */}
@@ -158,7 +135,7 @@ function MyVerticallyCenteredModal(props) {
 export const Category = () => {
     const dispatch = useDispatch();
     const categorys = useSelector((state) => state.category.category);
-    
+
     const [category, setCategory] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -168,8 +145,8 @@ export const Category = () => {
 
     useEffect(() => {
         // if (categorys.length !== category.length) {
-            setCategory(categorys);
-         
+        setCategory(categorys);
+
         // }
     }, [categorys]);
     return (
@@ -234,16 +211,18 @@ export const Category = () => {
                                                         <td><img src={val.icon} alt="" width={75} /></td>
                                                         <td>{val.category}</td>
                                                         <td>
-                                                        {
-                                                            val.status === 1 ? (
-                                                                <span>Active</span>
-                                                            ) : (
-                                                                <span style={{ color: 'red' }}>Deactive</span>
-                                                            )
-                                                        }
+                                                            {
+                                                                val.status === 1 ? (
+                                                                    <span>Active</span>
+                                                                ) : (
+                                                                    <span style={{ color: 'red' }}>Deactive</span>
+                                                                )
+                                                            }
                                                         </td>
 
-                                                        <td>@mdo</td>
+                                                        <td>
+                                                            <button className='btn btn-danger d-flex align-items-center' onClick={() => dispatch(DELETE_CATEGORY(val._id))}><MdOutlineDelete />Delete</button>
+                                                        </td>
                                                     </tr>
                                                 </>
                                             )

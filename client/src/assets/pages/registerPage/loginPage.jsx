@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { signInWithPopup } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LOGIN_USER } from '../../redux/action/loginAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import { useAuth, AuthProvider } from '../../context/googleAuth';
+import { auth, googleAuthProvider } from '../../../firebase';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,6 +19,25 @@ export const LoginPage = () => {
     e.preventDefault();
     let obj = { email, password };
     dispatch(LOGIN_USER(obj, navigate));
+  }
+
+
+  const [Gauth, setGauth] = useAuth();
+  const handleLogin = async()=> {
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      const token = result.user.accessToken;
+            setGauth({
+                ...Gauth,
+                token : token
+            })
+            localStorage.setItem('token',token)
+
+            navigate('/');
+    } catch (err) {
+      console.log(err);
+            return false;
+    }
   }
 
   return (
@@ -85,7 +107,7 @@ export const LoginPage = () => {
                         <button className="login-facebook">
                           <i className="ri-facebook-fill fb" />Login with Facebook
                         </button>
-                        <button className="login-google">
+                        <button className="login-google" onClick={ () => handleLogin()}>
                           <i className="ri-google-fill gl" />Login with Google
                         </button>
                       </div>

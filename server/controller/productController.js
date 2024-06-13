@@ -71,7 +71,7 @@ const ViewProduct = async (req, res) => {
 
 const DeleteProduct = async (req, res) => {
   try {
-    const id = req.query.id;
+    const id = req.query.id || req.body.id; 
 
     const img = await ProductModel.findById(id);
 

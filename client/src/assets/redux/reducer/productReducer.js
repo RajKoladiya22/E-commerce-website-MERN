@@ -19,8 +19,7 @@
 
 const initialState = {
   product: [],
-  isLoading: false,
-  // other state properties
+  isLoading: false
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -41,7 +40,6 @@ export const productReducer = (state = initialState, action) => {
         product: action.payload,
         isLoading: false,
       };
-    // other cases
     default:
       return state;
   }

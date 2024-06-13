@@ -3,17 +3,16 @@ import { AdminNav } from '../../components/adminNav';
 import { Header } from '../../../components/header/header';
 import Container from 'react-bootstrap/esm/Container';
 import { Footer } from '../../../components/footer/footer';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-import '../../../utils/loader.css';
-import { GET_PRODUCT, POST_PRODUCT } from '../../../redux/action/productAction';
+import { DELETE_PRODUCT, GET_PRODUCT, POST_PRODUCT } from '../../../redux/action/productAction';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../../../../../public/css/style.css';
 import { GET_CATEGORY } from '../../../redux/action/categoryAction';
 import '../../../utils/loader.css'
+import { MdOutlineDelete } from "react-icons/md";
 
 function MyVerticallyCenteredModal(props) {
     const dispatch = useDispatch();
@@ -43,6 +42,14 @@ function MyVerticallyCenteredModal(props) {
             dispatch(POST_PRODUCT(ProductData)).then(() => {
                 props.onHide();
             });
+            setProductName("");
+            setCategoryId("");
+            setProductOfferPrice("");
+            setProductPrice("");
+            setProductStatus("");
+            setProductImage("");
+            setProductDescription("");
+
         }
     }
 
@@ -52,6 +59,7 @@ function MyVerticallyCenteredModal(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            
         >
             {
                 isLoading ? (
@@ -75,7 +83,6 @@ function MyVerticallyCenteredModal(props) {
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-
                             <section className="register-page">
                                 <div className="login-contain">
                                     <div className="col-xxl-12 col-xl-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center ">
@@ -98,12 +105,11 @@ function MyVerticallyCenteredModal(props) {
                                                         >
                                                             <option className='t text-black-50' selected>Select Category</option>
                                                             {
-                                                                props.categories.map((cat) => {
-
-                                                                    return (
+                                                                props.categories.map((cat) => (
+                                                                    cat.status === 1 ? (
                                                                         <option key={cat._id} value={cat._id}>{cat.category}</option>
-                                                                    );
-                                                                })
+                                                                    ) : null
+                                                                ))
                                                             }
                                                         </select>
                                                     </div>
@@ -124,12 +130,16 @@ function MyVerticallyCenteredModal(props) {
                                                         />
                                                     </div>
                                                     <div className="form-group">
-                                                        <input type="text" id="cpassword"
+                                                        <select name="" className='w-100 border-0 py-3'
                                                             onChange={(e) => setProductStatus(e.target.value)}
                                                             value={productStatus}
                                                             placeholder="Status"
                                                             required
-                                                        />
+                                                        >
+                                                            <option value="" disabled>Status</option>
+                                                            <option value="1">In Stock</option>
+                                                            <option value="0">Out of Stock</option>
+                                                        </select>
                                                     </div>
                                                     <div className="form-group">
                                                         <input type="text"
@@ -259,7 +269,9 @@ export const AdmiProduct = () => {
                                                             )
                                                         }
                                                     </td>
-                                                    <td>@mdo</td>
+                                                    <td>
+                                                        <button className='btn btn-danger d-flex align-items-center' onClick={()=> dispatch(DELETE_PRODUCT(val._id))}><MdOutlineDelete />Delete</button>
+                                                    </td>
                                                 </tr>
                                             );
                                         })

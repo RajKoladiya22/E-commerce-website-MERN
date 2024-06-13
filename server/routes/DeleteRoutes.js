@@ -10,6 +10,7 @@ const productController = require('../controller/productController')
 
 
 //Category
+routes.delete('/api/v1/DeleteCategory', categoryController.DeleteCategory);
 
 //Product
 routes.delete('/api/v1/DeleteProduct', productController.DeleteProduct);
