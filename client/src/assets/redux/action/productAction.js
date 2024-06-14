@@ -43,8 +43,27 @@ export const POST_PRODUCT = (product) => {
   };
 };
 
-export const   DELETE_PRODUCT = (id) => {
+export const   EDIT_PRODUCT = (id) => {
   console.log(id);
+  return async (dispatch) => {
+    const response = await axios.put(`/api/v1/UpdateProduct`, id);
+    if (response) {
+      console.log('doneee')
+      dispatch(GET_PRODUCT());
+      toast(`${response.data.message}`);
+    }
+
+    try {
+      console.log(id)
+    } catch (err) {
+      toast.error(`Error: ${err.response.data.message}`);
+      console.log(`Error: ${err.response.data.message}`);
+      console.log(err);
+      return false;
+    }
+  };
+};
+export const   DELETE_PRODUCT = (id) => {
   return async (dispatch) => {
     const response = await axios.delete(`/api/v1/DeleteProduct?id=${id}`);
     if (response) {

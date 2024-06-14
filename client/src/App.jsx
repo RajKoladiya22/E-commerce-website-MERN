@@ -33,6 +33,7 @@ export const App = () => {
             <Route path="/admin" element={<AdminHome />} />
             <Route path="/admincategory" element={<Category />} />
             <Route path="/adminproduct" element={<AdmiProduct />} />
+            <Route path="editProduct/:id" exact element={<AdmiProduct />} />
           </Route>
         </Routes>
       </BrowserRouter>

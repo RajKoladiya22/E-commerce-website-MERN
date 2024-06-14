@@ -17,5 +17,4 @@ const upload = multer({ storage }).single('productImage');
 routes.put('/api/v1/UpdateProduct', upload, productController.UpdateProduct);
 
 
-
 module.exports = routes;
