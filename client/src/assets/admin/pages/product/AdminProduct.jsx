@@ -10,7 +10,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../../../../../public/css/style.css';
-import { GET_CATEGORY } from '../../../redux/action/categoryAction';
+import { EDIT_CATEGORY, GET_CATEGORY } from '../../../redux/action/categoryAction';
 import '../../../utils/loader.css'
 import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -49,7 +49,7 @@ function MyVerticallyCenteredModal(props) {
         };
 
         if (editId) {
-            dispatch(EDIT_PRODUCT(editId, ProductData)).then(() => {
+            dispatch(EDIT_CATEGORY(editId, ProductData)).then(() => {
             });
             props.onHide();
             setEditId("")

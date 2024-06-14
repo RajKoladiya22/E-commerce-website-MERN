@@ -5,7 +5,7 @@ export const GET_CATEGORY = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get("/api/v1/Categorys");
-       
+
       dispatch({
         type: "GET_CATEGORY_SUCCESS",
         payload: response.data,
@@ -19,7 +19,7 @@ export const GET_CATEGORY = () => {
 
 export const POST_CATEGORY = (category) => {
   return async (dispatch) => {
-    dispatch({ type: 'CATEGORY_UPLOAD_START' });
+    dispatch({ type: "CATEGORY_UPLOAD_START" });
     try {
       const response = await axios.post("/api/v1/createCategory", category, {
         headers: {
@@ -27,7 +27,7 @@ export const POST_CATEGORY = (category) => {
         },
       });
       if (response) {
-        console.log('done')
+        console.log("done");
         dispatch(GET_CATEGORY());
         toast(`${response.data.message}`);
       }
@@ -36,13 +36,40 @@ export const POST_CATEGORY = (category) => {
       console.log(`Error: ${err.response.data.message}`);
       console.log(err);
       return false;
-    }finally {
-      dispatch({ type: 'CATEGORY_UPLOAD_END' });
+    } finally {
+      dispatch({ type: "CATEGORY_UPLOAD_END" });
     }
   };
 };
 
-export const   DELETE_CATEGORY = (id) => {
+export const EDIT_CATEGORY = (id, categoryData) => {
+  console.log(id);
+  console.log(categoryData);
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("icon", categoryData.icon);
+
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`/api/v1/UpdateCategory`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response) {
+        dispatch(GET_CATEGORY());
+        toast(`${response.data.message}`);
+      }
+    } catch (err) {
+      toast.error(`Error: ${err.response.data.message}`);
+      console.log(`Error: ${err.response.data.message}`);
+      console.log(err);
+      return false;
+    }
+  };
+};
+
+export const DELETE_CATEGORY = (id) => {
   return async (dispatch) => {
     const response = await axios.delete(`/api/v1/DeleteCategory?id=${id}`);
     if (response) {
@@ -51,7 +78,7 @@ export const   DELETE_CATEGORY = (id) => {
     }
 
     try {
-      console.log(id)
+      console.log(id);
     } catch (err) {
       toast.error(`Error: ${err.response.data.message}`);
       console.log(`Error: ${err.response.data.message}`);

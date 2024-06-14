@@ -1,5 +1,5 @@
 const CategoryModel = require("../model/categoryModel");
-const ProductModel = require("../model/productModel")
+const ProductModel = require("../model/productModel");
 const cloudinary = require("cloudinary").v2;
 
 const Viewegory = async (req, res) => {
@@ -60,6 +60,64 @@ const Addcategory = async (req, res) => {
   }
 };
 
+const UpdateCategory = async (req, res) => {
+  try {
+    const id = req.body.id;
+    const { category, status } = req.body;
+
+    if (req.file || File || file) {
+      const img = await cloudinary.uploader.upload(req.file.path, {
+        folder: "MERN_Category",
+      });
+      const delImg = await CategoryModel.findById(id);
+      if (!delImg) {
+        return res.status(404).send({
+          success: false,
+          message: "Category Not Found",
+        });
+      }
+      await cloudinary.uploader.destroy(delImg.IconPubligId, {
+        folder: "MERN_Category",
+      });
+
+      await CategoryModel.findByIdAndUpdate(id, {
+        category: category,
+        status: status,
+        icon: img.secure_url,
+        IconPubligId: img.public_id,
+      });
+      console.log("Category Updated");
+      return res.status(201).send({
+        success: true,
+        message: "Category Updated",
+      });
+    } else {
+      const img = await cloudinary.uploader.upload(req.file.path, {
+        folder: "MERN_Category",
+      });
+      const updatedCategory = await ProductModel.findByIdAndUpdate(id, {
+        category: category,
+        status: status,
+        icon: img.secure_url,
+        IconPubligId: img.public_id,
+      });
+
+      return res.status(201).send({
+        success: true,
+        message: "Category Updated",
+        category: updatedCategory,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      success: false,
+      message: "Internal Server Error",
+      err,
+    });
+  }
+};
+
 const DeleteCategory = async (req, res) => {
   try {
     const id = req.query.id || req.body.id;
@@ -70,7 +128,7 @@ const DeleteCategory = async (req, res) => {
       folder: "MERN_Category",
     });
     await CategoryModel.findByIdAndDelete(id);
-   
+
     const products = await ProductModel.find({ categoryId: id });
 
     for (const product of products) {
@@ -98,5 +156,6 @@ const DeleteCategory = async (req, res) => {
 module.exports = {
   Viewegory,
   Addcategory,
+  UpdateCategory,
   DeleteCategory,
 };

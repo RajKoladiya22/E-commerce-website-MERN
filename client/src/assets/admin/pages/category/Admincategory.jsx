@@ -16,13 +16,14 @@ import { MdOutlineDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
 function MyVerticallyCenteredModal(props) {
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoading = useSelector((state) => state.category.isLoading);
     const [category, setCategoryName] = useState("");
     const [status, setStatus] = useState("");
     const [icon, setCategoryIcon] = useState("");
+    const [editId, setEditId] = useState("")
 
     if (isLoading) {
         props.onShow()
@@ -36,7 +37,14 @@ function MyVerticallyCenteredModal(props) {
         }
         console.log(CategoryData);
 
-        if (CategoryData) {
+        if (editId){
+            dispatch(POST_CATEGORY(editId, CategoryData)).then(() => {
+                props.onHide();
+            });
+            props.onHide();
+            setEditId("");
+            navigate('/admincategory')
+        }else {
             dispatch(POST_CATEGORY(CategoryData)).then(() => {
                 props.onHide();
             });
@@ -45,21 +53,26 @@ function MyVerticallyCenteredModal(props) {
             setCategoryIcon("");
         }
     }
+
+    const ClearUp = () => {
+        setEditId("")
+        setCategoryName("");
+        setStatus("");
+        setCategoryIcon("");
+        props.onHide();
+        navigate('/admincategory')
+    }
     useEffect(() => {
         if (id) {
             props.onShow();
-            // setEditId(id);
+            setEditId(id);
 
-            // const editProduct = product.find((item) => item._id === id);
-            // if (editProduct) {
-            //     setProductName(editProduct.productName);
-            //     setCategoryId(editProduct.categoryId._id);
-            //     setProductOfferPrice(editProduct.productOfferPrice);
-            //     setProductPrice(editProduct.productPrice);
-            //     setProductStatus(editProduct.productStatus);
-            //     setProductImage(editProduct.productImage);
-            //     setProductDescription(editProduct.productDiscription);
-            // }
+            const editCategory = props.categorys.find((item) => item._id === id);
+            if (editCategory) {
+                setCategoryName(editCategory.category);
+                setStatus(editCategory.status);
+                setCategoryIcon(editCategory.icon);
+            }
         }
     }, [id, props]);
 
@@ -87,9 +100,9 @@ function MyVerticallyCenteredModal(props) {
                 ) :
                     (
                         <>
-                            <Modal.Header closeButton>
+                            <Modal.Header closeButton={!editId}>
                                 <Modal.Title id="contained-modal-title-vcenter">
-                                    <h2>Create Category</h2>
+                                    <h2>{editId ? "Edit Category" : "Create Category"}</h2>
                                 </Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
@@ -127,12 +140,23 @@ function MyVerticallyCenteredModal(props) {
                                                         </div>
 
                                                         <button type="submit" className="login-btn" value="submit" >
-                                                            Create Category
+                                                            {editId ? "Update Category" : "Create Category"}
                                                         </button>
-                                                        {/* <button type="submit" className="login-btn" value="submit"
-                                            OnClick={props.onHide}>
-                                            Sign Up
-                                        </button> */}
+                                                        {
+                                                            editId ? (
+                                                                <Link
+                                                                    type="submit"
+                                                                    className="login-btn my-1 text-center"
+                                                                    value="submit"
+                                                                    to={'/admincategory'}
+                                                                    onClick={() => ClearUp()}
+                                                                >
+                                                                    Cancle Update
+                                                                </Link>
+                                                            ) : (
+                                                                ""
+                                                            )
+                                                        }
                                                     </form>
 
                                                 </div>
@@ -186,6 +210,7 @@ export const Category = () => {
                         </Button>
 
                         <MyVerticallyCenteredModal
+                            categorys={categorys}
                             show={modalShow}
                             onHide={() => setModalShow(false)}
                             onShow={() => setModalShow(true)}
@@ -243,16 +268,16 @@ export const Category = () => {
                                                         </td>
 
                                                         <td>
-                                                           <div className="d-flex justify-content-around">
-                                                           <Link
-                                                                className='btn btn-success d-flex align-items-center px-4'
-                                                                to={`/editCategory/${val._id}`}
-                                                            >
-                                                                <MdOutlineDelete />Edit
-                                                            </Link>
+                                                            <div className="d-flex justify-content-around">
+                                                                <Link
+                                                                    className='btn btn-success d-flex align-items-center px-4'
+                                                                    to={`/editCategory/${val._id}`}
+                                                                >
+                                                                    <MdOutlineDelete />Edit
+                                                                </Link>
 
-                                                            <button className='btn btn-danger d-flex align-items-center' onClick={() => dispatch(DELETE_CATEGORY(val._id))}><MdOutlineDelete />Delete</button>
-                                                           </div>
+                                                                <button className='btn btn-danger d-flex align-items-center' onClick={() => dispatch(DELETE_CATEGORY(val._id))}><MdOutlineDelete />Delete</button>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </>
