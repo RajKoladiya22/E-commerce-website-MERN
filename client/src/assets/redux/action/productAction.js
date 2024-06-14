@@ -44,8 +44,6 @@ export const POST_PRODUCT = (product) => {
 };
 
 export const EDIT_PRODUCT = (id, productData) => {
-  console.log(id);
-  console.log(productData);
   const formData = new FormData();
   formData.append("id", id);
   for (const key in productData) {
@@ -59,19 +57,16 @@ export const EDIT_PRODUCT = (id, productData) => {
   }
 
   return async (dispatch) => {
-    const response = await axios.put(`/api/v1/UpdateProduct`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    if (response) {
-      console.log("doneee");
-      dispatch(GET_PRODUCT());
-      toast(`${response.data.message}`);
-    }
-
     try {
-      console.log(id);
+      const response = await axios.put(`/api/v1/UpdateProduct`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response) {
+        dispatch(GET_PRODUCT());
+        toast(`${response.data.message}`);
+      }
     } catch (err) {
       toast.error(`Error: ${err.response.data.message}`);
       console.log(`Error: ${err.response.data.message}`);
@@ -83,14 +78,12 @@ export const EDIT_PRODUCT = (id, productData) => {
 
 export const DELETE_PRODUCT = (id) => {
   return async (dispatch) => {
-    const response = await axios.delete(`/api/v1/DeleteProduct?id=${id}`);
-    if (response) {
-      dispatch(GET_PRODUCT());
-      toast(`${response.data.message}`);
-    }
-
     try {
-      console.log(id);
+      const response = await axios.delete(`/api/v1/DeleteProduct?id=${id}`);
+      if (response) {
+        dispatch(GET_PRODUCT());
+        toast(`${response.data.message}`);
+      }
     } catch (err) {
       toast.error(`Error: ${err.response.data.message}`);
       console.log(`Error: ${err.response.data.message}`);

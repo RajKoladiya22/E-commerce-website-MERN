@@ -368,6 +368,11 @@ a {
     text-decoration: none !important;
     cursor: pointer;
 }
+table{
+    td{
+        vertical-align: middle;
+    }
+}
 
 // ===mixin-end===
 // ===toast-start===

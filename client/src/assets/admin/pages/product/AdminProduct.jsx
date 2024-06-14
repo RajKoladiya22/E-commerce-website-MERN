@@ -33,12 +33,14 @@ function MyVerticallyCenteredModal(props) {
     const [editId, setEditId] = useState('');
     const [category, setCategory] = useState([]);
     const [product, setProduct] = useState([]);
-  
+    if (isLoading) {
+        props.onShow()
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         let ProductData = {
             productName,
-            categoryId: categoryId.toString(),
+            categoryId,
             productOfferPrice,
             productPrice,
             productStatus,
@@ -47,13 +49,13 @@ function MyVerticallyCenteredModal(props) {
         };
 
         if (editId) {
-            console.log(ProductData)
             dispatch(EDIT_PRODUCT(editId, ProductData)).then(() => {
             });
             props.onHide();
             setEditId("")
             navigate('/adminProduct')
         } else {
+
             dispatch(POST_PRODUCT(ProductData)).then(() => {
                 props.onHide();
             });
@@ -99,7 +101,7 @@ function MyVerticallyCenteredModal(props) {
             const editProduct = product.find((item) => item._id === id);
             if (editProduct) {
                 setProductName(editProduct.productName);
-                setCategoryId(editProduct.categoryId);
+                setCategoryId(editProduct.categoryId._id);
                 setProductOfferPrice(editProduct.productOfferPrice);
                 setProductPrice(editProduct.productPrice);
                 setProductStatus(editProduct.productStatus);
@@ -131,7 +133,7 @@ function MyVerticallyCenteredModal(props) {
                 </center>
             ) : (
                 <>
-                   <Modal.Header closeButton={!editId}>
+                    <Modal.Header closeButton={!editId}>
                         <Modal.Title id="contained-modal-title-vcenter">
                             <h2>{editId ? "Edit Product" : "Add Product"}</h2>
                         </Modal.Title>
@@ -164,16 +166,16 @@ function MyVerticallyCenteredModal(props) {
                                                             Select Category
                                                         </option>
                                                         {categories.map((cat) => (
-                                                            cat.status === 1 && (
-                                                                <option
-                                                                    key={cat._id}
-                                                                    value={cat._id}
-                                                                >
-                                                                    {cat.category}
-                                                                </option>
-                                                            )
+                                                            <option
+                                                                key={cat._id}
+                                                                value={cat._id}
+                                                            >
+                                                                {cat.category}
+                                                            </option>
                                                         ))}
                                                     </select>
+
+
 
                                                 </div>
                                                 <div className="form-group">
@@ -235,14 +237,14 @@ function MyVerticallyCenteredModal(props) {
                                                 {
                                                     editId ? (
                                                         <Link
-                                                    type="submit"
-                                                    className="login-btn my-1 text-center"
-                                                    value="submit"
-                                                    to={'/adminproduct'}
-                                                    onClick={()=>ClearUp()}
-                                                >
-                                                    Cancle Update
-                                                </Link>
+                                                            type="submit"
+                                                            className="login-btn my-1 text-center"
+                                                            value="submit"
+                                                            to={'/adminproduct'}
+                                                            onClick={() => ClearUp()}
+                                                        >
+                                                            Cancle Update
+                                                        </Link>
                                                     ) : (
                                                         ""
                                                     )
@@ -255,8 +257,9 @@ function MyVerticallyCenteredModal(props) {
                         </section>
                     </Modal.Body>
                 </>
-            )}
-        </Modal>
+            )
+            }
+        </Modal >
     );
 }
 
@@ -298,7 +301,7 @@ export const AdmiProduct = () => {
                         </Button>
 
                         <MyVerticallyCenteredModal
-                            // categories={category}
+                            categories={category}
                             // products={product}
                             show={modalShow}
                             onHide={() => setModalShow(false)}

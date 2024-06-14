@@ -46,6 +46,10 @@ a {
   cursor: pointer;
 }
 
+table td {
+  vertical-align: middle;
+}
+
 .top-bar {
   background-color: #095850;
   padding: 10px 0;

@@ -32,6 +32,7 @@ export const App = () => {
           <Route element={<ProtectedRoute allowedRoles={['admin']}/>}>
             <Route path="/admin" element={<AdminHome />} />
             <Route path="/admincategory" element={<Category />} />
+            <Route path="editCategory/:id" element={<Category />} />
             <Route path="/adminproduct" element={<AdmiProduct />} />
             <Route path="editProduct/:id" exact element={<AdmiProduct />} />
           </Route>

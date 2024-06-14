@@ -9,13 +9,14 @@ import '../../../utils/loader.css'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import '../../../../../public/css/style.css'
 import { DELETE_CATEGORY, GET_CATEGORY, POST_CATEGORY } from '../../../redux/action/categoryAction';
 import { MdOutlineDelete } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 function MyVerticallyCenteredModal(props) {
-
+    const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoading = useSelector((state) => state.category.isLoading);
@@ -23,7 +24,9 @@ function MyVerticallyCenteredModal(props) {
     const [status, setStatus] = useState("");
     const [icon, setCategoryIcon] = useState("");
 
-
+    if (isLoading) {
+        props.onShow()
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         let CategoryData = {
@@ -42,6 +45,24 @@ function MyVerticallyCenteredModal(props) {
             setCategoryIcon("");
         }
     }
+    useEffect(() => {
+        if (id) {
+            props.onShow();
+            // setEditId(id);
+
+            // const editProduct = product.find((item) => item._id === id);
+            // if (editProduct) {
+            //     setProductName(editProduct.productName);
+            //     setCategoryId(editProduct.categoryId._id);
+            //     setProductOfferPrice(editProduct.productOfferPrice);
+            //     setProductPrice(editProduct.productPrice);
+            //     setProductStatus(editProduct.productStatus);
+            //     setProductImage(editProduct.productImage);
+            //     setProductDescription(editProduct.productDiscription);
+            // }
+        }
+    }, [id, props]);
+
     return (
         <Modal
             {...props}
@@ -167,6 +188,7 @@ export const Category = () => {
                         <MyVerticallyCenteredModal
                             show={modalShow}
                             onHide={() => setModalShow(false)}
+                            onShow={() => setModalShow(true)}
                         />
                         <Table striped bordered hover>
                             <thead>
@@ -221,7 +243,16 @@ export const Category = () => {
                                                         </td>
 
                                                         <td>
+                                                           <div className="d-flex justify-content-around">
+                                                           <Link
+                                                                className='btn btn-success d-flex align-items-center px-4'
+                                                                to={`/editCategory/${val._id}`}
+                                                            >
+                                                                <MdOutlineDelete />Edit
+                                                            </Link>
+
                                                             <button className='btn btn-danger d-flex align-items-center' onClick={() => dispatch(DELETE_CATEGORY(val._id))}><MdOutlineDelete />Delete</button>
+                                                           </div>
                                                         </td>
                                                     </tr>
                                                 </>

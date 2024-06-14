@@ -29,7 +29,7 @@ const AddProduct = async (req, res) => {
         ImagesPubligId: img.public_id,
       });
       if (data) {
-        console.log('Product Added')
+        console.log("Product Added");
         return res.status(201).send({
           success: true,
           message: "Product Added Successfully",
@@ -72,7 +72,7 @@ const ViewProduct = async (req, res) => {
 
 const DeleteProduct = async (req, res) => {
   try {
-    const id = req.query.id || req.body.id; 
+    const id = req.query.id || req.body.id;
 
     const img = await ProductModel.findById(id);
 
@@ -80,7 +80,7 @@ const DeleteProduct = async (req, res) => {
       folder: "MERN_Products",
     });
     await ProductModel.findByIdAndDelete(id);
-    console.log('Product Deleted')
+    console.log("Product Deleted");
     return res.status(201).send({
       success: true,
       message: "Product Deleted",
@@ -107,7 +107,7 @@ const UpdateProduct = async (req, res) => {
       productStatus,
     } = req.body;
 
-    if (req.file) {
+    if (req.file || File || file) {
       const img = await cloudinary.uploader.upload(req.file.path, {
         folder: "MERN_Products",
       });
@@ -132,7 +132,7 @@ const UpdateProduct = async (req, res) => {
         productImage: img.secure_url,
         ImagesPubligId: img.public_id,
       });
-      console.log('Product Updated')
+      console.log("Product Updated");
       return res.status(201).send({
         success: true,
         message: "Product Updated",
@@ -141,7 +141,7 @@ const UpdateProduct = async (req, res) => {
       const img = await cloudinary.uploader.upload(req.file.path, {
         folder: "MERN_Products",
       });
-      await ProductModel.findByIdAndUpdate(id, {
+      const updatedProduct = await ProductModel.findByIdAndUpdate(id, {
         categoryId: categoryId,
         productName: productName,
         productDiscription: productDiscription,
@@ -155,6 +155,7 @@ const UpdateProduct = async (req, res) => {
       return res.status(201).send({
         success: true,
         message: "Product Updated",
+        product: updatedProduct,
       });
     }
   } catch (err) {
