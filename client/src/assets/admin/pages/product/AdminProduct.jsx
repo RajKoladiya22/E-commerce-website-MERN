@@ -29,29 +29,30 @@ function MyVerticallyCenteredModal(props) {
     const [productPrice, setProductPrice] = useState("");
     const [productStatus, setProductStatus] = useState("");
     const [productImage, setProductImage] = useState("");
-    const [productDescription, setProductDescription] = useState("");
+    const [productDiscription, setProductDescription] = useState("");
     const [editId, setEditId] = useState('');
     const [category, setCategory] = useState([]);
     const [product, setProduct] = useState([]);
-
+  
     const handleSubmit = (e) => {
         e.preventDefault();
         let ProductData = {
             productName,
-            categoryId,
+            categoryId: categoryId.toString(),
             productOfferPrice,
             productPrice,
             productStatus,
             productImage,
-            productDescription
+            productDiscription
         };
 
         if (editId) {
+            console.log(ProductData)
             dispatch(EDIT_PRODUCT(editId, ProductData)).then(() => {
-                props.onHide();
-                navigate('/adminProduct')
-
             });
+            props.onHide();
+            setEditId("")
+            navigate('/adminProduct')
         } else {
             dispatch(POST_PRODUCT(ProductData)).then(() => {
                 props.onHide();
@@ -67,6 +68,19 @@ function MyVerticallyCenteredModal(props) {
         setProductDescription("");
     };
 
+    const ClearUp = () => {
+        setEditId("")
+        setProductName("");
+        setCategoryId("");
+        setProductOfferPrice("");
+        setProductPrice("");
+        setProductStatus("");
+        setProductImage("");
+        setProductDescription("");
+        props.onHide();
+        navigate('/adminproduct')
+    }
+
     useEffect(() => {
         if (products.length !== product.length) {
             setProduct(products.data.product);
@@ -81,6 +95,7 @@ function MyVerticallyCenteredModal(props) {
         if (id) {
             props.onShow();
             setEditId(id);
+
             const editProduct = product.find((item) => item._id === id);
             if (editProduct) {
                 setProductName(editProduct.productName);
@@ -89,7 +104,7 @@ function MyVerticallyCenteredModal(props) {
                 setProductPrice(editProduct.productPrice);
                 setProductStatus(editProduct.productStatus);
                 setProductImage(editProduct.productImage);
-                setProductDescription(editProduct.productDescription);
+                setProductDescription(editProduct.productDiscription);
             }
         }
     }, [id, product, props]);
@@ -116,7 +131,7 @@ function MyVerticallyCenteredModal(props) {
                 </center>
             ) : (
                 <>
-                    <Modal.Header closeButton>
+                   <Modal.Header closeButton={!editId}>
                         <Modal.Title id="contained-modal-title-vcenter">
                             <h2>{editId ? "Edit Product" : "Add Product"}</h2>
                         </Modal.Title>
@@ -148,12 +163,18 @@ function MyVerticallyCenteredModal(props) {
                                                         <option className='t text-black-50' value="" disabled>
                                                             Select Category
                                                         </option>
-                                                        {category.map((cat) => (
-                                                            cat.status === 1 ? (
-                                                                <option key={cat._id} value={cat._id}>{cat.category}</option>
-                                                            ) : null
+                                                        {categories.map((cat) => (
+                                                            cat.status === 1 && (
+                                                                <option
+                                                                    key={cat._id}
+                                                                    value={cat._id}
+                                                                >
+                                                                    {cat.category}
+                                                                </option>
+                                                            )
                                                         ))}
                                                     </select>
+
                                                 </div>
                                                 <div className="form-group">
                                                     <input
@@ -192,7 +213,7 @@ function MyVerticallyCenteredModal(props) {
                                                     <input
                                                         type="text"
                                                         onChange={(e) => setProductDescription(e.target.value)}
-                                                        value={productDescription}
+                                                        value={productDiscription}
                                                         placeholder="Product Description"
                                                         required
                                                     />
@@ -201,7 +222,7 @@ function MyVerticallyCenteredModal(props) {
                                                     <input
                                                         type="file"
                                                         onChange={(e) => setProductImage(e.target.files[0])}
-                                                        required
+                                                        required={!editId}
                                                     />
                                                 </div>
                                                 <button
@@ -211,6 +232,21 @@ function MyVerticallyCenteredModal(props) {
                                                 >
                                                     {editId ? "Update Product" : "Add Product"}
                                                 </button>
+                                                {
+                                                    editId ? (
+                                                        <Link
+                                                    type="submit"
+                                                    className="login-btn my-1 text-center"
+                                                    value="submit"
+                                                    to={'/adminproduct'}
+                                                    onClick={()=>ClearUp()}
+                                                >
+                                                    Cancle Update
+                                                </Link>
+                                                    ) : (
+                                                        ""
+                                                    )
+                                                }
                                             </form>
                                         </div>
                                     </div>

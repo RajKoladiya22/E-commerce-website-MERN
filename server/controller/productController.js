@@ -29,6 +29,7 @@ const AddProduct = async (req, res) => {
         ImagesPubligId: img.public_id,
       });
       if (data) {
+        console.log('Product Added')
         return res.status(201).send({
           success: true,
           message: "Product Added Successfully",
@@ -79,7 +80,7 @@ const DeleteProduct = async (req, res) => {
       folder: "MERN_Products",
     });
     await ProductModel.findByIdAndDelete(id);
-
+    console.log('Product Deleted')
     return res.status(201).send({
       success: true,
       message: "Product Deleted",
@@ -131,6 +132,7 @@ const UpdateProduct = async (req, res) => {
         productImage: img.secure_url,
         ImagesPubligId: img.public_id,
       });
+      console.log('Product Updated')
       return res.status(201).send({
         success: true,
         message: "Product Updated",
